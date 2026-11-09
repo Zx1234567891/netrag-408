@@ -1,0 +1,1753 @@
+{
+  "query_set": "eval/retrieval-holdout.jsonl",
+  "scope": "supplemental pooled relevance assessment after pre-fix runs; frozen labels are unchanged",
+  "review_method": "Codex adjudication against frozen criteria, with candidate IDs sorted and system/rank hidden",
+  "unjudged_pairs_reviewed": 37,
+  "newly_judged_relevant": 7,
+  "judgments": [
+    {
+      "id": "hold-structure-encapsulation",
+      "source_id": "2012_40",
+      "relevant": false,
+      "reason": "区分邮件流程中的应用协议，不分析跨层承载或传输单元。"
+    },
+    {
+      "id": "hold-structure-encapsulation",
+      "source_id": "2013_35",
+      "relevant": false,
+      "reason": "比较交换方式的传输耗时，明确忽略包头和拆装。"
+    },
+    {
+      "id": "hold-structure-encapsulation",
+      "source_id": "2015_35",
+      "relevant": false,
+      "reason": "求链路滑窗利用率和帧序号位数，不辨认跨层承载。"
+    },
+    {
+      "id": "hold-structure-encapsulation",
+      "source_id": "2025_37",
+      "relevant": true,
+      "reason": "明确以 IP 数据报承载 UDP 为前提，分析网络层地址转换及其对所承载报文头的影响。"
+    },
+    {
+      "id": "hold-structure-encapsulation",
+      "source_id": "2025_47",
+      "relevant": false,
+      "reason": "各层开销仅作忽略条件，实质是卫星链路延时、窗口和子网配置。"
+    },
+    {
+      "id": "hold-structure-delay",
+      "source_id": "2016_34",
+      "relevant": false,
+      "reason": "以香农容量和给定比例求实际速率，没有计算任何时延或带宽时延积。"
+    },
+    {
+      "id": "hold-structure-topology",
+      "source_id": "2025_33",
+      "relevant": false,
+      "reason": "网络可达条件已经给定，比较交换方式下的传输时间，不推断设备更换后的转发、广播或冲突可达性。"
+    },
+    {
+      "id": "hold-link-ethernet",
+      "source_id": "2012_35",
+      "relevant": false,
+      "reason": "只识别 MAC 服务语义，没有碰撞检测、帧长或退避。"
+    },
+    {
+      "id": "hold-link-ethernet",
+      "source_id": "2019_36",
+      "relevant": true,
+      "reason": "直接用 CSMA/CD 的最小帧长约束反推冲突域可容许的传播时延。"
+    },
+    {
+      "id": "hold-link-bridge",
+      "source_id": "2019_47",
+      "relevant": true,
+      "reason": "要求判断广播由交换机传播到哪些主机，解析说明路由器如何隔离该广播边界。"
+    },
+    {
+      "id": "hold-link-stop",
+      "source_id": "2017_47",
+      "relevant": false,
+      "reason": "题设及推导都是允许多帧在途的 GBN，没有停等的单帧等待约束。"
+    },
+    {
+      "id": "hold-link-error",
+      "source_id": "2011_47",
+      "relevant": false,
+      "reason": "帧格式示意仅列出 CRC 尾字段，不讨论其检错功能或算法。"
+    },
+    {
+      "id": "hold-net-summary",
+      "source_id": "concept-longest-prefix",
+      "relevant": false,
+      "reason": "从已存在的条目选最长匹配，不合并条目或验证汇总边界。"
+    },
+    {
+      "id": "hold-net-forward",
+      "source_id": "2011_37",
+      "relevant": false,
+      "reason": "求一条汇总静态路由及相邻下一跳，没有按具体目的地址在条目中选择，也未配置默认或主机路由。"
+    },
+    {
+      "id": "hold-net-forward",
+      "source_id": "2026_37",
+      "relevant": false,
+      "reason": "根据断链与前缀聚合计算表项数；默认和主机路由已经给定，不执行指定目的地址的查表。"
+    },
+    {
+      "id": "hold-net-arp",
+      "source_id": "2011_47",
+      "relevant": true,
+      "reason": "本题正文及嵌入解答直接要求识别首跳网关 MAC，并说明 ARP 请求的链路广播地址。"
+    },
+    {
+      "id": "hold-net-fragment",
+      "source_id": "2024_36",
+      "relevant": false,
+      "reason": "求无线局域网预约信道的 NAV，不涉及 IPv4 分片字段。"
+    },
+    {
+      "id": "hold-net-fragment",
+      "source_id": "2025_37",
+      "relevant": false,
+      "reason": "考查 NAT 改写 UDP 字段，没有 MTU、片偏移或分片标志计算。"
+    },
+    {
+      "id": "hold-trans-handshake",
+      "source_id": "2013_39",
+      "relevant": false,
+      "reason": "已建立连接，计算正常数据交换的序号和确认号，不涉及初始序号或建连报文。"
+    },
+    {
+      "id": "hold-trans-handshake",
+      "source_id": "2016_41",
+      "relevant": true,
+      "reason": "有独立小问计算第二次握手段的 SYN、ACK 标志及确认号。"
+    },
+    {
+      "id": "hold-trans-handshake",
+      "source_id": "2024_38",
+      "relevant": true,
+      "reason": "虽然题目求全流程耗时，解析确实列出三次握手中的 SYN、SYN+ACK 和 ACK。"
+    },
+    {
+      "id": "hold-trans-handshake",
+      "source_id": "concept-tcp-ack",
+      "relevant": false,
+      "reason": "解释数据字节的累计确认和缺口，不涉及建连或交换初始序号。"
+    },
+    {
+      "id": "hold-trans-ack",
+      "source_id": "2016_41",
+      "relevant": false,
+      "reason": "数据阶段求通告窗口及下一发送序号，没有按接收字节推进数据 ACK 或讨论重复、乱序确认。"
+    },
+    {
+      "id": "hold-trans-ack",
+      "source_id": "2023_47",
+      "relevant": true,
+      "reason": "数据阶段的解析把各已收到字节范围与相应的累计确认号逐一配对。"
+    },
+    {
+      "id": "hold-trans-ack",
+      "source_id": "2024_38",
+      "relevant": false,
+      "reason": "只是将接收累积确认作为耗时阶段，不计算数据确认号的字节级推进。"
+    },
+    {
+      "id": "hold-trans-teardown",
+      "source_id": "2022_38",
+      "relevant": false,
+      "reason": "第 38 题本身是超时后的拥塞窗口恢复；记录中混入了后续题的断开过程，不能把该串题内容当成第 38 题证据。"
+    },
+    {
+      "id": "hold-trans-flow",
+      "source_id": "2022_38",
+      "relevant": false,
+      "reason": "求超时后的拥塞窗口增长时间，没有从接收通告或在途量求可发送数据。"
+    },
+    {
+      "id": "hold-trans-udp",
+      "source_id": "2009_40",
+      "relevant": false,
+      "reason": "问 FTP 命令走哪条连接，UDP 只是选项干扰，不比较运输服务。"
+    },
+    {
+      "id": "hold-trans-udp",
+      "source_id": "2024_40",
+      "relevant": false,
+      "reason": "考查非持久 HTTP 的 TCP 建连与 RTT，没有 UDP 服务比较。"
+    },
+    {
+      "id": "hold-app-http",
+      "source_id": "2016_41",
+      "relevant": false,
+      "reason": "Web 访问只是背景，实质是 TCP 握手字段、接收窗口和关闭。"
+    },
+    {
+      "id": "hold-app-http",
+      "source_id": "2017_39",
+      "relevant": false,
+      "reason": "只求 TCP 发送窗口增长时间，没有 HTTP 对象请求与连接复用。"
+    },
+    {
+      "id": "hold-app-http",
+      "source_id": "2019_39",
+      "relevant": false,
+      "reason": "只求 TCP 第三次握手确认号，没有 HTTP 连接复用。"
+    },
+    {
+      "id": "hold-app-http",
+      "source_id": "2023_47",
+      "relevant": false,
+      "reason": "连接生存期考查的是 FTP 控制与数据连接，不是 HTTP 复用。"
+    },
+    {
+      "id": "hold-app-http",
+      "source_id": "2024_38",
+      "relevant": false,
+      "reason": "核算一般 TCP 建连、传输和关闭时长，没有比较 HTTP 连接行为。"
+    },
+    {
+      "id": "hold-app-http",
+      "source_id": "concept-tcp-handshake",
+      "relevant": false,
+      "reason": "说明 TCP 握手字段，无浏览器请求或 HTTP 连接复用。"
+    },
+    {
+      "id": "hold-app-ftp",
+      "source_id": "2022_38",
+      "relevant": false,
+      "reason": "内容是 TCP 拥塞恢复及串入的 TCP 关闭解析，未讨论 FTP 连接。"
+    },
+    {
+      "id": "hold-app-ftp",
+      "source_id": "2022_40",
+      "relevant": false,
+      "reason": "练习 HTTP 网页与图像获取，没有 FTP 控制连接或数据连接。"
+    }
+  ],
+  "profiles": {
+    "published-bge": {
+      "frozen_hits": 86,
+      "pooled_hits": 89,
+      "slots": 99,
+      "top3_ids": {
+        "hold-structure-services": [
+          "concept-osi-layers",
+          "concept-service-protocol",
+          "concept-units"
+        ],
+        "hold-structure-encapsulation": [
+          "2013_35",
+          "2015_35",
+          "concept-units"
+        ],
+        "hold-structure-switching": [
+          "2010_34",
+          "2025_33",
+          "2013_35"
+        ],
+        "hold-structure-delay": [
+          "concept-bandwidth-delay",
+          "2023_33",
+          "concept-delay-components"
+        ],
+        "hold-structure-topology": [
+          "2010_38",
+          "2019_47",
+          "2022_47"
+        ],
+        "hold-phy-nyquist": [
+          "concept-capacity-limits",
+          "concept-nyquist",
+          "2023_34"
+        ],
+        "hold-phy-shannon": [
+          "concept-shannon",
+          "concept-capacity-limits",
+          "2026_34"
+        ],
+        "hold-phy-modulation": [
+          "2023_34"
+        ],
+        "hold-phy-waveforms": [
+          "concept-manchester",
+          "2015_34",
+          "2021_34"
+        ],
+        "hold-link-ethernet": [
+          "concept-ethernet-collision",
+          "2019_36",
+          "2015_36"
+        ],
+        "hold-link-wireless": [
+          "2026_35",
+          "concept-wifi-csma",
+          "2020_37"
+        ],
+        "hold-link-bridge": [
+          "2026_36",
+          "concept-switch-learning",
+          "concept-vlan"
+        ],
+        "hold-link-arq": [
+          "concept-gbn-sr",
+          "2024_37",
+          "2011_35"
+        ],
+        "hold-link-stop": [
+          "2017_47",
+          "concept-stop-and-wait"
+        ],
+        "hold-link-error": [
+          "concept-crc",
+          "2025_34",
+          "2023_37"
+        ],
+        "hold-net-subnet": [
+          "concept-subnet-cidr",
+          "2012_39",
+          "2011_38"
+        ],
+        "hold-net-summary": [
+          "concept-route-aggregation",
+          "2018_38",
+          "2011_37"
+        ],
+        "hold-net-forward": [
+          "2014_43",
+          "2013_47",
+          "2015_38"
+        ],
+        "hold-net-nat": [
+          "2020_47",
+          "concept-nat-port",
+          "2025_37"
+        ],
+        "hold-net-arp": [
+          "concept-arp-next-hop",
+          "2015_47",
+          "2011_47"
+        ],
+        "hold-net-fragment": [
+          "concept-ipv4-fragmentation",
+          "2018_47",
+          "2021_36"
+        ],
+        "hold-net-rip": [
+          "concept-rip-ospf",
+          "2016_37",
+          "2021_37"
+        ],
+        "hold-trans-handshake": [
+          "concept-tcp-handshake",
+          "2011_39",
+          "2016_41"
+        ],
+        "hold-trans-ack": [
+          "concept-tcp-ack",
+          "2024_38",
+          "2011_39"
+        ],
+        "hold-trans-teardown": [
+          "concept-tcp-close",
+          "2024_38",
+          "2021_38"
+        ],
+        "hold-trans-flow": [
+          "concept-tcp-flow-vs-congestion",
+          "concept-tcp-flow",
+          "2014_38"
+        ],
+        "hold-trans-congestion": [
+          "concept-tcp-congestion",
+          "2022_38",
+          "2023_47"
+        ],
+        "hold-trans-udp": [
+          "2018_39",
+          "2014_39",
+          "concept-udp"
+        ],
+        "hold-app-dns": [
+          "2010_40",
+          "2016_40",
+          "concept-dns-recursion"
+        ],
+        "hold-app-dhcp": [
+          "concept-dhcp",
+          "2025_36",
+          "2015_47"
+        ],
+        "hold-app-http": [
+          "2023_47",
+          "concept-tcp-handshake",
+          "2024_40"
+        ],
+        "hold-app-email": [
+          "concept-email",
+          "2025_40",
+          "2013_40"
+        ],
+        "hold-app-ftp": [
+          "concept-ftp",
+          "2017_40",
+          "2009_40"
+        ]
+      }
+    },
+    "published-offline": {
+      "frozen_hits": 82,
+      "pooled_hits": 84,
+      "slots": 99,
+      "top3_ids": {
+        "hold-structure-services": [
+          "concept-osi-layers",
+          "2021_33",
+          "2012_33"
+        ],
+        "hold-structure-encapsulation": [],
+        "hold-structure-switching": [
+          "2013_35",
+          "2025_33",
+          "2010_34"
+        ],
+        "hold-structure-delay": [
+          "concept-bandwidth-delay",
+          "2023_33"
+        ],
+        "hold-structure-topology": [
+          "2010_38",
+          "2022_47",
+          "2019_47"
+        ],
+        "hold-phy-nyquist": [
+          "concept-capacity-limits",
+          "concept-nyquist",
+          "2023_34"
+        ],
+        "hold-phy-shannon": [
+          "concept-shannon",
+          "concept-capacity-limits",
+          "2026_34"
+        ],
+        "hold-phy-modulation": [],
+        "hold-phy-waveforms": [
+          "2015_34",
+          "2021_34",
+          "concept-manchester"
+        ],
+        "hold-link-ethernet": [
+          "concept-ethernet-collision",
+          "2015_36",
+          "2019_36"
+        ],
+        "hold-link-wireless": [
+          "2020_37",
+          "concept-wifi-csma",
+          "2026_35"
+        ],
+        "hold-link-bridge": [
+          "concept-vlan",
+          "concept-switch-learning",
+          "2026_36"
+        ],
+        "hold-link-arq": [
+          "2024_37",
+          "2019_35",
+          "concept-gbn-sr"
+        ],
+        "hold-link-stop": [
+          "2017_47"
+        ],
+        "hold-link-error": [
+          "2025_34",
+          "concept-crc",
+          "2023_37"
+        ],
+        "hold-net-subnet": [
+          "2010_37",
+          "concept-subnet-cidr",
+          "2011_38"
+        ],
+        "hold-net-summary": [
+          "2018_38",
+          "concept-route-aggregation",
+          "2011_37"
+        ],
+        "hold-net-forward": [
+          "2013_47",
+          "2014_43",
+          "2009_47"
+        ],
+        "hold-net-nat": [
+          "2020_47",
+          "concept-nat-port",
+          "2025_37"
+        ],
+        "hold-net-arp": [
+          "concept-arp-next-hop",
+          "2015_47",
+          "2011_47"
+        ],
+        "hold-net-fragment": [
+          "concept-ipv4-fragmentation",
+          "2021_36",
+          "2018_47"
+        ],
+        "hold-net-rip": [
+          "concept-rip-ospf",
+          "2016_37",
+          "2021_37"
+        ],
+        "hold-trans-handshake": [
+          "concept-tcp-handshake",
+          "2011_39",
+          "2026_47"
+        ],
+        "hold-trans-ack": [
+          "concept-tcp-ack",
+          "2026_47",
+          "2024_38"
+        ],
+        "hold-trans-teardown": [
+          "concept-tcp-close",
+          "2021_38",
+          "2024_38"
+        ],
+        "hold-trans-flow": [
+          "concept-tcp-flow-vs-congestion",
+          "concept-tcp-flow",
+          "2010_39"
+        ],
+        "hold-trans-congestion": [
+          "concept-tcp-congestion",
+          "2023_47",
+          "2014_38"
+        ],
+        "hold-trans-udp": [
+          "2018_39",
+          "2014_39",
+          "concept-udp"
+        ],
+        "hold-app-dns": [
+          "2016_40",
+          "2010_40",
+          "2020_40"
+        ],
+        "hold-app-dhcp": [
+          "concept-dhcp",
+          "2025_36",
+          "2015_47"
+        ],
+        "hold-app-http": [
+          "2023_47",
+          "2019_39",
+          "2024_38"
+        ],
+        "hold-app-email": [
+          "concept-email",
+          "2013_40",
+          "2025_40"
+        ],
+        "hold-app-ftp": [
+          "concept-ftp",
+          "2009_40",
+          "2018_33"
+        ]
+      }
+    },
+    "bge-base-reranker": {
+      "frozen_hits": 87,
+      "pooled_hits": 92,
+      "slots": 99,
+      "top3_ids": {
+        "hold-structure-services": [
+          "2026_33",
+          "concept-osi-layers",
+          "concept-units"
+        ],
+        "hold-structure-encapsulation": [
+          "2017_37",
+          "concept-units",
+          "2025_37"
+        ],
+        "hold-structure-switching": [
+          "2010_34",
+          "concept-packet-switching",
+          "2025_33"
+        ],
+        "hold-structure-delay": [
+          "concept-bandwidth-delay",
+          "concept-delay-components",
+          "2023_33"
+        ],
+        "hold-structure-topology": [
+          "2022_47",
+          "2025_33",
+          "2020_35"
+        ],
+        "hold-phy-nyquist": [
+          "concept-nyquist",
+          "concept-capacity-limits",
+          "2017_34"
+        ],
+        "hold-phy-shannon": [
+          "concept-shannon",
+          "2026_34",
+          "2017_34"
+        ],
+        "hold-phy-modulation": [
+          "2023_34"
+        ],
+        "hold-phy-waveforms": [
+          "2021_34",
+          "concept-manchester",
+          "2015_34"
+        ],
+        "hold-link-ethernet": [
+          "concept-ethernet-collision",
+          "2019_36",
+          "2009_37"
+        ],
+        "hold-link-wireless": [
+          "2018_35",
+          "2020_37",
+          "concept-wifi-csma"
+        ],
+        "hold-link-bridge": [
+          "concept-switch-learning",
+          "2026_36",
+          "2024_35"
+        ],
+        "hold-link-arq": [
+          "concept-gbn-sr",
+          "2011_35",
+          "2024_37"
+        ],
+        "hold-link-stop": [
+          "concept-stop-and-wait",
+          "2018_36",
+          "2023_35"
+        ],
+        "hold-link-error": [
+          "concept-crc",
+          "2025_34",
+          "2023_37"
+        ],
+        "hold-net-subnet": [
+          "concept-subnet-cidr",
+          "2022_35",
+          "2012_39"
+        ],
+        "hold-net-summary": [
+          "2018_38",
+          "concept-route-aggregation",
+          "concept-longest-prefix"
+        ],
+        "hold-net-forward": [
+          "2015_38",
+          "2013_47",
+          "2009_47"
+        ],
+        "hold-net-nat": [
+          "2025_37",
+          "2020_47",
+          "concept-nat-port"
+        ],
+        "hold-net-arp": [
+          "concept-arp-next-hop",
+          "2012_38",
+          "2024_35"
+        ],
+        "hold-net-fragment": [
+          "concept-ipv4-fragmentation",
+          "2021_36",
+          "2018_47"
+        ],
+        "hold-net-rip": [
+          "concept-rip-ospf",
+          "2016_37",
+          "2026_38"
+        ],
+        "hold-trans-handshake": [
+          "2024_38",
+          "concept-tcp-handshake",
+          "2016_41"
+        ],
+        "hold-trans-ack": [
+          "2023_47",
+          "2024_38",
+          "concept-tcp-ack"
+        ],
+        "hold-trans-teardown": [
+          "2021_38",
+          "concept-tcp-close",
+          "2022_39"
+        ],
+        "hold-trans-flow": [
+          "concept-tcp-flow-vs-congestion",
+          "concept-tcp-flow",
+          "2025_38"
+        ],
+        "hold-trans-congestion": [
+          "2022_38",
+          "concept-tcp-congestion",
+          "2020_38"
+        ],
+        "hold-trans-udp": [
+          "2014_39",
+          "concept-udp",
+          "2018_39"
+        ],
+        "hold-app-dns": [
+          "2016_40",
+          "2020_40",
+          "2010_40"
+        ],
+        "hold-app-dhcp": [
+          "concept-dhcp",
+          "2025_36",
+          "2015_47"
+        ],
+        "hold-app-http": [
+          "2024_40",
+          "2023_47",
+          "2022_40"
+        ],
+        "hold-app-email": [
+          "concept-email",
+          "2012_40",
+          "2025_40"
+        ],
+        "hold-app-ftp": [
+          "2023_47",
+          "2022_40",
+          "2009_40"
+        ]
+      }
+    },
+    "updated-bge": {
+      "frozen_hits": 86,
+      "pooled_hits": 88,
+      "slots": 99,
+      "top3_ids": {
+        "hold-structure-services": [
+          "concept-osi-layers",
+          "2011_33",
+          "2021_33"
+        ],
+        "hold-structure-encapsulation": [
+          "2021_47",
+          "2017_37",
+          "2025_47"
+        ],
+        "hold-structure-switching": [
+          "2025_33",
+          "2013_35",
+          "2010_34"
+        ],
+        "hold-structure-delay": [
+          "concept-bandwidth-delay",
+          "2016_34",
+          "concept-delay-components"
+        ],
+        "hold-structure-topology": [
+          "2022_47",
+          "2019_47",
+          "2020_35"
+        ],
+        "hold-phy-nyquist": [
+          "concept-capacity-limits",
+          "2023_34",
+          "concept-nyquist"
+        ],
+        "hold-phy-shannon": [
+          "concept-shannon",
+          "2026_34",
+          "concept-capacity-limits"
+        ],
+        "hold-phy-modulation": [
+          "2023_34"
+        ],
+        "hold-phy-waveforms": [
+          "2021_34",
+          "concept-manchester",
+          "2015_34"
+        ],
+        "hold-link-ethernet": [
+          "concept-ethernet-collision",
+          "2019_36",
+          "2023_36"
+        ],
+        "hold-link-wireless": [
+          "concept-wifi-csma",
+          "2020_37",
+          "2026_35"
+        ],
+        "hold-link-bridge": [
+          "2026_36",
+          "concept-switch-learning",
+          "2024_35"
+        ],
+        "hold-link-arq": [
+          "2024_37",
+          "concept-gbn-sr",
+          "2011_35"
+        ],
+        "hold-link-stop": [
+          "2023_35",
+          "2017_47",
+          "concept-stop-and-wait"
+        ],
+        "hold-link-error": [
+          "concept-crc",
+          "2023_37",
+          "2011_47"
+        ],
+        "hold-net-subnet": [
+          "concept-subnet-cidr",
+          "2010_37",
+          "2012_39"
+        ],
+        "hold-net-summary": [
+          "concept-route-aggregation",
+          "2018_38",
+          "2011_37"
+        ],
+        "hold-net-forward": [
+          "2014_43",
+          "2013_47",
+          "2015_38"
+        ],
+        "hold-net-nat": [
+          "2020_47",
+          "2025_37",
+          "concept-nat-port"
+        ],
+        "hold-net-arp": [
+          "concept-arp-next-hop",
+          "2015_47",
+          "2024_35"
+        ],
+        "hold-net-fragment": [
+          "concept-ipv4-fragmentation",
+          "2021_36",
+          "2024_36"
+        ],
+        "hold-net-rip": [
+          "concept-rip-ospf",
+          "2024_47",
+          "2026_38"
+        ],
+        "hold-trans-handshake": [
+          "2024_38",
+          "concept-tcp-ack",
+          "concept-tcp-handshake"
+        ],
+        "hold-trans-ack": [
+          "concept-tcp-ack",
+          "2024_38",
+          "2013_39"
+        ],
+        "hold-trans-teardown": [
+          "2024_38",
+          "2021_38",
+          "concept-tcp-close"
+        ],
+        "hold-trans-flow": [
+          "concept-tcp-flow-vs-congestion",
+          "concept-tcp-flow",
+          "2016_41"
+        ],
+        "hold-trans-congestion": [
+          "concept-tcp-congestion",
+          "2022_38",
+          "2023_47"
+        ],
+        "hold-trans-udp": [
+          "2014_39",
+          "2018_39",
+          "2024_40"
+        ],
+        "hold-app-dns": [
+          "2010_40",
+          "2016_40",
+          "2020_40"
+        ],
+        "hold-app-dhcp": [
+          "concept-dhcp",
+          "2025_36",
+          "2015_47"
+        ],
+        "hold-app-http": [
+          "concept-http-persistence",
+          "2024_40",
+          "2017_39"
+        ],
+        "hold-app-email": [
+          "2025_40",
+          "concept-email",
+          "2012_40"
+        ],
+        "hold-app-ftp": [
+          "2009_40",
+          "concept-ftp",
+          "2017_40"
+        ]
+      }
+    },
+    "updated-offline": {
+      "frozen_hits": 84,
+      "pooled_hits": 88,
+      "slots": 99,
+      "top3_ids": {
+        "hold-structure-services": [
+          "concept-osi-layers",
+          "2011_33",
+          "2021_33"
+        ],
+        "hold-structure-encapsulation": [
+          "2021_47",
+          "2017_37",
+          "2012_40"
+        ],
+        "hold-structure-switching": [
+          "2013_35",
+          "2025_33",
+          "2010_34"
+        ],
+        "hold-structure-delay": [
+          "concept-bandwidth-delay",
+          "2023_33",
+          "2016_34"
+        ],
+        "hold-structure-topology": [
+          "2010_38",
+          "2022_47",
+          "concept-hub-repeater"
+        ],
+        "hold-phy-nyquist": [
+          "2023_34",
+          "concept-nyquist",
+          "concept-capacity-limits"
+        ],
+        "hold-phy-shannon": [
+          "concept-shannon",
+          "concept-capacity-limits",
+          "2026_34"
+        ],
+        "hold-phy-modulation": [
+          "2023_34"
+        ],
+        "hold-phy-waveforms": [
+          "2021_34",
+          "concept-manchester",
+          "2015_34"
+        ],
+        "hold-link-ethernet": [
+          "concept-ethernet-collision",
+          "2019_36",
+          "2012_35"
+        ],
+        "hold-link-wireless": [
+          "concept-wifi-csma",
+          "2020_37",
+          "2018_35"
+        ],
+        "hold-link-bridge": [
+          "2026_36",
+          "concept-switch-learning",
+          "2019_47"
+        ],
+        "hold-link-arq": [
+          "2024_37",
+          "2011_35",
+          "2023_35"
+        ],
+        "hold-link-stop": [
+          "2023_35",
+          "2020_36",
+          "2017_47"
+        ],
+        "hold-link-error": [
+          "concept-crc",
+          "2023_37",
+          "2025_34"
+        ],
+        "hold-net-subnet": [
+          "concept-subnet-cidr",
+          "2010_37",
+          "2023_39"
+        ],
+        "hold-net-summary": [
+          "2018_38",
+          "concept-route-aggregation",
+          "2011_37"
+        ],
+        "hold-net-forward": [
+          "2014_43",
+          "2013_47",
+          "concept-longest-prefix"
+        ],
+        "hold-net-nat": [
+          "2020_47",
+          "concept-nat-port",
+          "2025_37"
+        ],
+        "hold-net-arp": [
+          "concept-arp-next-hop",
+          "2015_47",
+          "2011_47"
+        ],
+        "hold-net-fragment": [
+          "concept-ipv4-fragmentation",
+          "2025_37",
+          "2018_47"
+        ],
+        "hold-net-rip": [
+          "concept-rip-ospf",
+          "2024_47",
+          "2026_38"
+        ],
+        "hold-trans-handshake": [
+          "2024_38",
+          "concept-tcp-ack",
+          "concept-tcp-handshake"
+        ],
+        "hold-trans-ack": [
+          "concept-tcp-ack",
+          "2024_38",
+          "concept-tcp-retransmit"
+        ],
+        "hold-trans-teardown": [
+          "concept-tcp-close",
+          "2024_38",
+          "2021_38"
+        ],
+        "hold-trans-flow": [
+          "concept-tcp-flow-vs-congestion",
+          "concept-tcp-flow",
+          "2010_39"
+        ],
+        "hold-trans-congestion": [
+          "concept-tcp-congestion",
+          "2023_47",
+          "concept-tcp-flow-vs-congestion"
+        ],
+        "hold-trans-udp": [
+          "2025_39",
+          "concept-udp",
+          "2009_40"
+        ],
+        "hold-app-dns": [
+          "2016_40",
+          "2010_40",
+          "2020_40"
+        ],
+        "hold-app-dhcp": [
+          "concept-dhcp",
+          "2025_36",
+          "2022_47"
+        ],
+        "hold-app-http": [
+          "2023_47",
+          "concept-http-persistence",
+          "2022_40"
+        ],
+        "hold-app-email": [
+          "2013_40",
+          "2025_40",
+          "concept-email"
+        ],
+        "hold-app-ftp": [
+          "concept-ftp",
+          "2009_40",
+          "2017_40"
+        ]
+      }
+    },
+    "qwen3-reranker": {
+      "frozen_hits": 91,
+      "pooled_hits": 93,
+      "slots": 99,
+      "top3_ids": {
+        "hold-structure-services": [
+          "concept-osi-layers",
+          "2011_33",
+          "2021_33"
+        ],
+        "hold-structure-encapsulation": [
+          "2017_37",
+          "concept-units",
+          "2025_37"
+        ],
+        "hold-structure-switching": [
+          "2013_35",
+          "concept-packet-switching",
+          "2025_33"
+        ],
+        "hold-structure-delay": [
+          "concept-bandwidth-delay",
+          "2023_33",
+          "concept-delay-components"
+        ],
+        "hold-structure-topology": [
+          "2022_47",
+          "2020_35",
+          "concept-hub-repeater"
+        ],
+        "hold-phy-nyquist": [
+          "concept-capacity-limits",
+          "concept-nyquist",
+          "2023_34"
+        ],
+        "hold-phy-shannon": [
+          "concept-shannon",
+          "2026_34",
+          "concept-capacity-limits"
+        ],
+        "hold-phy-modulation": [
+          "2023_34"
+        ],
+        "hold-phy-waveforms": [
+          "2021_34",
+          "concept-manchester",
+          "2015_34"
+        ],
+        "hold-link-ethernet": [
+          "concept-ethernet-collision",
+          "2025_35",
+          "2019_36"
+        ],
+        "hold-link-wireless": [
+          "2020_37",
+          "2018_35",
+          "concept-wifi-csma"
+        ],
+        "hold-link-bridge": [
+          "2026_36",
+          "concept-switch-learning",
+          "2024_35"
+        ],
+        "hold-link-arq": [
+          "2024_37",
+          "concept-gbn-sr",
+          "2011_35"
+        ],
+        "hold-link-stop": [
+          "2023_35",
+          "concept-stop-and-wait",
+          "2018_36"
+        ],
+        "hold-link-error": [
+          "2023_37",
+          "concept-crc",
+          "2025_34"
+        ],
+        "hold-net-subnet": [
+          "concept-subnet-cidr",
+          "2010_37",
+          "2012_39"
+        ],
+        "hold-net-summary": [
+          "concept-route-aggregation",
+          "2018_38",
+          "2011_37"
+        ],
+        "hold-net-forward": [
+          "2015_38",
+          "2014_43",
+          "2011_37"
+        ],
+        "hold-net-nat": [
+          "concept-nat-port",
+          "2020_47",
+          "2025_37"
+        ],
+        "hold-net-arp": [
+          "concept-arp-next-hop",
+          "2012_38",
+          "2024_35"
+        ],
+        "hold-net-fragment": [
+          "concept-ipv4-fragmentation",
+          "2021_36",
+          "concept-ipv6"
+        ],
+        "hold-net-rip": [
+          "concept-rip-ospf",
+          "2016_37",
+          "2010_35"
+        ],
+        "hold-trans-handshake": [
+          "concept-tcp-handshake",
+          "2019_39",
+          "2011_39"
+        ],
+        "hold-trans-ack": [
+          "concept-tcp-ack",
+          "2013_39",
+          "2020_39"
+        ],
+        "hold-trans-teardown": [
+          "2021_38",
+          "concept-tcp-close",
+          "2022_39"
+        ],
+        "hold-trans-flow": [
+          "concept-tcp-flow-vs-congestion",
+          "concept-tcp-flow",
+          "2025_38"
+        ],
+        "hold-trans-congestion": [
+          "concept-tcp-congestion",
+          "2022_38",
+          "2014_38"
+        ],
+        "hold-trans-udp": [
+          "concept-udp",
+          "2018_39",
+          "2014_39"
+        ],
+        "hold-app-dns": [
+          "concept-dns-recursion",
+          "2010_40",
+          "2016_40"
+        ],
+        "hold-app-dhcp": [
+          "concept-dhcp",
+          "2025_36",
+          "2015_47"
+        ],
+        "hold-app-http": [
+          "concept-http-persistence",
+          "2024_40",
+          "2023_47"
+        ],
+        "hold-app-email": [
+          "concept-email",
+          "2012_40",
+          "2025_40"
+        ],
+        "hold-app-ftp": [
+          "2009_40",
+          "concept-ftp",
+          "2023_47"
+        ]
+      }
+    },
+    "bge-v2-m3": {
+      "frozen_hits": 90,
+      "pooled_hits": 93,
+      "slots": 99,
+      "top3_ids": {
+        "hold-structure-services": [
+          "concept-osi-layers",
+          "concept-service-protocol",
+          "2011_33"
+        ],
+        "hold-structure-encapsulation": [
+          "2017_37",
+          "concept-units",
+          "2025_37"
+        ],
+        "hold-structure-switching": [
+          "concept-packet-switching",
+          "2010_34",
+          "2013_35"
+        ],
+        "hold-structure-delay": [
+          "2023_33",
+          "concept-delay-components",
+          "concept-bandwidth-delay"
+        ],
+        "hold-structure-topology": [
+          "2022_47",
+          "2020_35",
+          "concept-hub-repeater"
+        ],
+        "hold-phy-nyquist": [
+          "concept-nyquist",
+          "concept-capacity-limits",
+          "2017_34"
+        ],
+        "hold-phy-shannon": [
+          "concept-shannon",
+          "concept-capacity-limits",
+          "2017_34"
+        ],
+        "hold-phy-modulation": [
+          "2023_34"
+        ],
+        "hold-phy-waveforms": [
+          "2021_34",
+          "concept-manchester",
+          "2015_34"
+        ],
+        "hold-link-ethernet": [
+          "concept-ethernet-collision",
+          "2025_35",
+          "2010_47"
+        ],
+        "hold-link-wireless": [
+          "2018_35",
+          "2020_37",
+          "concept-wifi-csma"
+        ],
+        "hold-link-bridge": [
+          "concept-switch-learning",
+          "2026_36",
+          "2024_35"
+        ],
+        "hold-link-arq": [
+          "2024_37",
+          "concept-gbn-sr",
+          "2011_35"
+        ],
+        "hold-link-stop": [
+          "2020_36",
+          "concept-stop-and-wait",
+          "2018_36"
+        ],
+        "hold-link-error": [
+          "2025_34",
+          "concept-crc",
+          "2023_37"
+        ],
+        "hold-net-subnet": [
+          "concept-subnet-cidr",
+          "2023_39",
+          "2022_35"
+        ],
+        "hold-net-summary": [
+          "concept-route-aggregation",
+          "2011_37",
+          "concept-longest-prefix"
+        ],
+        "hold-net-forward": [
+          "2015_38",
+          "2009_47",
+          "2013_47"
+        ],
+        "hold-net-nat": [
+          "concept-nat-port",
+          "2025_37",
+          "2020_47"
+        ],
+        "hold-net-arp": [
+          "concept-arp-next-hop",
+          "2012_38",
+          "2024_35"
+        ],
+        "hold-net-fragment": [
+          "concept-ipv4-fragmentation",
+          "2021_36",
+          "2018_47"
+        ],
+        "hold-net-rip": [
+          "concept-rip-ospf",
+          "2016_37",
+          "2026_38"
+        ],
+        "hold-trans-handshake": [
+          "concept-tcp-handshake",
+          "2016_41",
+          "2013_39"
+        ],
+        "hold-trans-ack": [
+          "2013_39",
+          "2023_47",
+          "2024_38"
+        ],
+        "hold-trans-teardown": [
+          "2021_38",
+          "concept-tcp-close",
+          "2022_39"
+        ],
+        "hold-trans-flow": [
+          "concept-tcp-flow",
+          "concept-tcp-flow-vs-congestion",
+          "2025_38"
+        ],
+        "hold-trans-congestion": [
+          "concept-tcp-congestion",
+          "2022_38",
+          "2020_38"
+        ],
+        "hold-trans-udp": [
+          "concept-udp",
+          "2014_39",
+          "2018_39"
+        ],
+        "hold-app-dns": [
+          "2020_40",
+          "2016_40",
+          "concept-dns-recursion"
+        ],
+        "hold-app-dhcp": [
+          "2025_36",
+          "concept-dhcp",
+          "2015_47"
+        ],
+        "hold-app-http": [
+          "2023_47",
+          "2022_40",
+          "concept-http-persistence"
+        ],
+        "hold-app-email": [
+          "concept-email",
+          "2012_40",
+          "2025_40"
+        ],
+        "hold-app-ftp": [
+          "2023_47",
+          "2017_40",
+          "2009_40"
+        ]
+      }
+    },
+    "listwise-probe": {
+      "frozen_hits": 89,
+      "pooled_hits": 93,
+      "slots": 99,
+      "top3_ids": {
+        "hold-structure-services": [
+          "concept-osi-layers",
+          "concept-units",
+          "concept-service-protocol"
+        ],
+        "hold-structure-encapsulation": [
+          "concept-units",
+          "2021_47",
+          "2025_37"
+        ],
+        "hold-structure-switching": [
+          "2025_33",
+          "2013_35",
+          "concept-packet-switching"
+        ],
+        "hold-structure-delay": [
+          "2023_33",
+          "concept-delay-components",
+          "concept-bandwidth-delay"
+        ],
+        "hold-structure-topology": [
+          "2022_47",
+          "concept-hub-repeater",
+          "2010_38"
+        ],
+        "hold-phy-nyquist": [
+          "concept-nyquist",
+          "2022_34",
+          "concept-capacity-limits"
+        ],
+        "hold-phy-shannon": [
+          "2026_34",
+          "concept-shannon",
+          "2016_34"
+        ],
+        "hold-phy-modulation": [
+          "2023_34"
+        ],
+        "hold-phy-waveforms": [
+          "2021_34",
+          "2015_34",
+          "concept-manchester"
+        ],
+        "hold-link-ethernet": [
+          "concept-ethernet-collision",
+          "2019_36",
+          "2023_36"
+        ],
+        "hold-link-wireless": [
+          "2018_35",
+          "2020_37",
+          "2011_36"
+        ],
+        "hold-link-bridge": [
+          "concept-switch-learning",
+          "2026_36",
+          "concept-vlan"
+        ],
+        "hold-link-arq": [
+          "concept-gbn-sr",
+          "2011_35",
+          "2015_35"
+        ],
+        "hold-link-stop": [
+          "concept-stop-and-wait",
+          "2018_36",
+          "2020_36"
+        ],
+        "hold-link-error": [
+          "concept-crc",
+          "2023_37",
+          "2025_34"
+        ],
+        "hold-net-subnet": [
+          "concept-subnet-cidr",
+          "2023_39",
+          "2022_35"
+        ],
+        "hold-net-summary": [
+          "concept-route-aggregation",
+          "2018_38",
+          "2011_37"
+        ],
+        "hold-net-forward": [
+          "2014_43",
+          "2011_37",
+          "2026_37"
+        ],
+        "hold-net-nat": [
+          "2025_37",
+          "concept-nat-port",
+          "2023_38"
+        ],
+        "hold-net-arp": [
+          "concept-arp-next-hop",
+          "2021_47",
+          "2015_47"
+        ],
+        "hold-net-fragment": [
+          "concept-ipv4-fragmentation",
+          "2021_36",
+          "2018_47"
+        ],
+        "hold-net-rip": [
+          "concept-rip-ospf",
+          "2024_47",
+          "2010_35"
+        ],
+        "hold-trans-handshake": [
+          "concept-tcp-handshake",
+          "concept-tcp-ack",
+          "2016_41"
+        ],
+        "hold-trans-ack": [
+          "2013_39",
+          "2025_38",
+          "2023_47"
+        ],
+        "hold-trans-teardown": [
+          "concept-tcp-close",
+          "2022_39",
+          "2021_38"
+        ],
+        "hold-trans-flow": [
+          "concept-tcp-flow",
+          "2010_39",
+          "2014_38"
+        ],
+        "hold-trans-congestion": [
+          "2022_38",
+          "concept-tcp-congestion",
+          "2014_38"
+        ],
+        "hold-trans-udp": [
+          "concept-udp",
+          "2014_39",
+          "2018_39"
+        ],
+        "hold-app-dns": [
+          "concept-dns-recursion",
+          "2010_40",
+          "2016_40"
+        ],
+        "hold-app-dhcp": [
+          "concept-dhcp",
+          "2025_36",
+          "2015_47"
+        ],
+        "hold-app-http": [
+          "concept-http-persistence",
+          "2022_40",
+          "2023_47"
+        ],
+        "hold-app-email": [
+          "concept-email",
+          "2025_40",
+          "2012_40"
+        ],
+        "hold-app-ftp": [
+          "concept-ftp",
+          "2023_47",
+          "2009_40"
+        ]
+      }
+    },
+    "compact-passage-probe": {
+      "frozen_hits": 83,
+      "pooled_hits": 88,
+      "slots": 99,
+      "top3_ids": {
+        "hold-structure-services": [
+          "2026_33",
+          "concept-osi-layers",
+          "concept-units"
+        ],
+        "hold-structure-encapsulation": [
+          "2021_47",
+          "2017_37",
+          "2025_37"
+        ],
+        "hold-structure-switching": [
+          "concept-packet-switching",
+          "2010_34",
+          "2013_35"
+        ],
+        "hold-structure-delay": [
+          "concept-bandwidth-delay",
+          "2023_33",
+          "concept-delay-components"
+        ],
+        "hold-structure-topology": [
+          "2022_47",
+          "2025_33",
+          "2020_35"
+        ],
+        "hold-phy-nyquist": [
+          "2023_34",
+          "concept-nyquist",
+          "concept-capacity-limits"
+        ],
+        "hold-phy-shannon": [
+          "2026_34",
+          "concept-shannon",
+          "2017_34"
+        ],
+        "hold-phy-modulation": [
+          "2023_34"
+        ],
+        "hold-phy-waveforms": [
+          "2021_34",
+          "concept-manchester",
+          "2015_34"
+        ],
+        "hold-link-ethernet": [
+          "concept-ethernet-collision",
+          "2019_36",
+          "2009_37"
+        ],
+        "hold-link-wireless": [
+          "2026_35",
+          "2018_35",
+          "2020_37"
+        ],
+        "hold-link-bridge": [
+          "concept-switch-learning",
+          "2026_36",
+          "2024_35"
+        ],
+        "hold-link-arq": [
+          "concept-gbn-sr",
+          "2011_35",
+          "2024_37"
+        ],
+        "hold-link-stop": [
+          "concept-stop-and-wait",
+          "2023_35",
+          "2018_36"
+        ],
+        "hold-link-error": [
+          "2025_34",
+          "concept-crc",
+          "2023_37"
+        ],
+        "hold-net-subnet": [
+          "concept-subnet-cidr",
+          "2012_39",
+          "2022_35"
+        ],
+        "hold-net-summary": [
+          "concept-route-aggregation",
+          "2018_38",
+          "concept-longest-prefix"
+        ],
+        "hold-net-forward": [
+          "2015_38",
+          "2013_47",
+          "2009_47"
+        ],
+        "hold-net-nat": [
+          "2025_37",
+          "2020_47",
+          "concept-nat-port"
+        ],
+        "hold-net-arp": [
+          "concept-arp-next-hop",
+          "2012_38",
+          "2011_47"
+        ],
+        "hold-net-fragment": [
+          "concept-ipv4-fragmentation",
+          "2018_47",
+          "2021_36"
+        ],
+        "hold-net-rip": [
+          "concept-rip-ospf",
+          "2024_47",
+          "2016_37"
+        ],
+        "hold-trans-handshake": [
+          "concept-tcp-handshake",
+          "2016_41",
+          "2024_38"
+        ],
+        "hold-trans-ack": [
+          "2025_38",
+          "2016_41",
+          "concept-tcp-ack"
+        ],
+        "hold-trans-teardown": [
+          "2021_38",
+          "2022_38",
+          "2024_38"
+        ],
+        "hold-trans-flow": [
+          "concept-tcp-flow-vs-congestion",
+          "concept-tcp-flow",
+          "2022_38"
+        ],
+        "hold-trans-congestion": [
+          "2023_47",
+          "concept-tcp-congestion",
+          "2022_38"
+        ],
+        "hold-trans-udp": [
+          "2014_39",
+          "concept-udp",
+          "2018_39"
+        ],
+        "hold-app-dns": [
+          "2016_40",
+          "2020_40",
+          "2010_40"
+        ],
+        "hold-app-dhcp": [
+          "concept-dhcp",
+          "2025_36",
+          "2015_47"
+        ],
+        "hold-app-http": [
+          "2023_47",
+          "2022_40",
+          "2016_41"
+        ],
+        "hold-app-email": [
+          "concept-email",
+          "2012_40",
+          "2025_40"
+        ],
+        "hold-app-ftp": [
+          "2023_47",
+          "2022_38",
+          "2022_40"
+        ]
+      }
+    }
+  }
+}

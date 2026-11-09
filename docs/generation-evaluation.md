@@ -2,6 +2,8 @@
 
 2026 年 11 月 10 日在 RTX 4060 Ti 上以 llama.cpp `b8469` 的 Vulkan 后端运行 Qwen3-4B-Instruct-2507 Q4_K_M。模型文件 SHA-256 为 `8cdb57cbb880d313736a9bc4e3d3d2485f145b5e19cf33783746e753e82641fc`。服务使用单推理槽、8192 上下文和种子 408。应用请求使用 JSON 对象模式、温度 0.1、最多 950 输出 token 和 35 秒请求超时。检索使用 BGE-small-zh-v1.5、FAISS、jieba 和 BGE-reranker-base，单路候选 20，OpenMP 线程数为 4。[模型卡](https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507) · [实测 GGUF](https://huggingface.co/lmstudio-community/Qwen3-4B-Instruct-2507-GGUF/blob/4edb920b6f14e3b9284d4502a6485103d72cde05/Qwen3-4B-Instruct-2507-Q4_K_M.gguf) · [推理服务版本](https://github.com/ggml-org/llama.cpp/releases/tag/b8469)
 
+本次生成测试在最后一轮物理层同义词补齐前完成。保留原运行记录以便复算，最终检索配置的成绩单独列出。[检索评测](retrieval-holdout.md)
+
 | 样本与口径 | 答案准确率 | 幻觉率 |
 | --- | ---: | ---: |
 | 公开用例 · 全链路 | 18/28（64.29%） | 8/28（28.57%） |
