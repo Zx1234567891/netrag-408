@@ -38,6 +38,13 @@ class RetrievalTests(unittest.TestCase):
         self.assertIn("TCP拥塞控制", rewritten["aliases"])
         self.assertEqual(rewritten["chapters"], [5])
 
+    def test_modulation_names_resolve_to_physical_layer_topic(self):
+        for query in ("FSK 怎样选择载波频率？", "相移键控的符号是什么？", "怎么把波特转换成每秒比特？"):
+            with self.subTest(query=query):
+                rewritten = rewrite_query(query)
+                self.assertEqual(rewritten["chapters"], [2])
+                self.assertIn("码元与比特速率", rewritten["aliases"])
+
     def test_alias_can_retrieve_a_canonically_labeled_passage(self):
         result = self.retriever.search("网络太堵时窗口怎么变？")
         best = result["results"][0]
