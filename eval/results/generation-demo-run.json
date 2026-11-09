@@ -1,0 +1,880 @@
+{
+  "cases_sha256": "f1ca8b7e7fb970aee09479688c0baedef29badeb6dc9f5bce00d8f4007ceeaea",
+  "cases_file": "generation.jsonl",
+  "run_at_utc": "2026-11-09T21:15:18.806910+00:00",
+  "model": "qwen3-4b-instruct-2507-q4km",
+  "model_timeout_seconds": 35.0,
+  "corpus_mode": "demo",
+  "strategy": "hybrid",
+  "dense_backend": "BAAI/bge-small-zh-v1.5",
+  "reranker": "BAAI/bge-reranker-base",
+  "vector_index": "faiss-flat-ip",
+  "tokenizer": "jieba+cjk-ngram",
+  "model_request_parameters": {
+    "temperature": 0.1,
+    "max_tokens": 950,
+    "response_format": {
+      "type": "json_object"
+    }
+  },
+  "details": [
+    {
+      "id": "gen-layer-mapping",
+      "query": "按常用 TCP/IP 四层划分，OSI 的物理层、数据链路层和表示层分别应归到哪一层？",
+      "source_ids": [
+        "concept-osi-layers",
+        "concept-units",
+        "concept-ports-sockets"
+      ],
+      "answer": "OSI 的物理层和数据链路层属于 TCP/IP 的网络接口层；OSI 的表示层属于 TCP/IP 的应用层。\n\n**步骤说明**：\n1. 根据 [concept-osi-layers]，OSI 七层模型自底向上为：物理层、数据链路层、网络层、传输层、会话层、表示层、应用层。\n2. TCP/IP 四层模型为：网络接口层、网际层、传输层、应用层。\n3. 分析对应关系：\n   - 网络接口层覆盖 OSI 的物理层和数据链路层（如 [concept-osi-layers] 中所述）。\n   - 表示层属于 OSI 的上层功能，其职责如数据格式转换、加密等，通常由应用层实现，因此归入 TCP/IP 的应用层。\n4. 因此，OSI 的物理层和数据链路层对应 TCP/IP 的网络接口层，表示层对应 TCP/IP 的应用层。",
+      "answer_sha256": "e0fccb072b0337096908a937abc72fbff576e0d6114003eb63939d6c8e69df24",
+      "mode": "llm",
+      "elapsed_ms": 15769.413,
+      "category": "concept",
+      "expected_abstention": false,
+      "model_attempts": [
+        {
+          "http_status": 200,
+          "request_parameters": {
+            "temperature": 0.1,
+            "max_tokens": 950,
+            "response_format": {
+              "type": "json_object"
+            }
+          },
+          "model": "qwen3-4b-instruct-2507-q4km",
+          "finish_reason": "stop",
+          "completion_received": true,
+          "declared_abstention": false
+        }
+      ],
+      "model_abstention_accepted": false
+    },
+    {
+      "id": "gen-delay",
+      "query": "一个 1200 字节的帧走 8 Mb/s 的链路，链路长 300 km，信号速度为每秒 2 亿米。忽略其他时延，从第一位开始发送到最后一位收齐要多久？分项计算。",
+      "source_ids": [
+        "concept-delay-components",
+        "concept-store-forward",
+        "concept-bandwidth-delay"
+      ],
+      "answer": "发送时延 = 数据长度 / 链路速率，传播时延 = 链路距离 / 信号速度。\n\n第一步：计算发送时延。\n帧大小为 1200 字节 = 1200 × 8 = 9600 bit。\n链路速率为 8 Mb/s = 8 × 10⁶ b/s。\n发送时延 = 9600 / (8 × 10⁶) = 0.0012 秒 = 1.2 毫秒。\n\n第二步：计算传播时延。\n链路长度为 300 km = 3 × 10⁵ 米。\n信号速度为 2 × 10⁸ 米/秒。\n传播时延 = 3 × 10⁵ / (2 × 10⁸) = 0.0015 秒 = 1.5 毫秒。\n\n第三步：总时延。\n从第一位开始发送，到最后一比特被接收，需要经历发送时延和传播时延。\n由于是单跳链路，且忽略排队和处理时延，总时延为发送时延 + 传播时延 = 1.2 ms + 1.5 ms = 2.7 毫秒。\n\n因此，从第一位开始发送到最后一位收齐需要 2.7 毫秒。\n\n【依据来源】：[concept-delay-components] 提供了发送时延和传播时延的定义与计算方法，明确指出发送时延是数据长度除以链路速率，传播时延是距离除以信号速度，且在忽略其他时延条件下，总时延为两者之和。",
+      "answer_sha256": "aff0327665360db0b12db43620903f3171eeabc520329d9a9604e1a9b2beb281",
+      "mode": "llm",
+      "elapsed_ms": 5826.762,
+      "category": "calculation",
+      "expected_abstention": false,
+      "model_attempts": [
+        {
+          "http_status": 200,
+          "request_parameters": {
+            "temperature": 0.1,
+            "max_tokens": 950,
+            "response_format": {
+              "type": "json_object"
+            }
+          },
+          "model": "qwen3-4b-instruct-2507-q4km",
+          "finish_reason": "stop",
+          "completion_received": true,
+          "declared_abstention": false
+        }
+      ],
+      "model_abstention_accepted": false
+    },
+    {
+      "id": "gen-bottleneck",
+      "query": "一条端到端连接串联经过 10、40 和 18 Mb/s 三段链路，无竞争且可充分流水。单流速率上限是多少？应用层实测可以比它低吗？",
+      "source_ids": [
+        "concept-throughput",
+        "concept-capacity-limits",
+        "concept-delay-components"
+      ],
+      "answer": "单流速率上限是 10 Mb/s。因为三段链路的速率分别为 10 Mb/s、40 Mb/s 和 18 Mb/s，串联链路的瓶颈由最慢的链路决定，即 10 Mb/s。在无竞争且可充分流水的条件下，该链路速率给出单流吞吐量的上界。应用层实测速率不可能超过此上限，但可能因协议开销、丢包、端系统性能或实际网络负载等因素低于该值。\n\n依据来源 [concept-throughput]：串联链路的瓶颈速率给出单流吞吐量的上界，实际测量还会受共享、协议开销、丢包和端系统限制。",
+      "answer_sha256": "656e34667c226895c49b6990b8212746d65894b60c98d6185024ac5471d7719e",
+      "mode": "llm",
+      "elapsed_ms": 3937.879,
+      "category": "calculation",
+      "expected_abstention": false,
+      "model_attempts": [
+        {
+          "http_status": 200,
+          "request_parameters": {
+            "temperature": 0.1,
+            "max_tokens": 950,
+            "response_format": {
+              "type": "json_object"
+            }
+          },
+          "model": "qwen3-4b-instruct-2507-q4km",
+          "finish_reason": "stop",
+          "completion_received": true,
+          "declared_abstention": false
+        }
+      ],
+      "model_abstention_accepted": false
+    },
+    {
+      "id": "gen-nyquist",
+      "query": "理想无噪声带限链路带宽为 2 kHz，用 16 种码元状态。奈奎斯特上限对应每秒多少码元、多少比特？",
+      "source_ids": [
+        "concept-nyquist",
+        "concept-capacity-limits",
+        "concept-sampling"
+      ],
+      "answer": "理想无噪声带限链路带宽为 2 kHz，使用 16 种码元状态时，奈奎斯特上限对应每秒码元速率为 2 × 2000 = 4000 码元/秒（即 4 kbps），每秒比特率为 4000 × log₂16 = 4000 × 4 = 16,000 比特/秒。\n\n根据 [concept-nyquist]，理想无噪声带限信道的最高码元速率为 2B，其中 B 为带宽（单位 Hz），M 元调制的最高比特率为 2B·log₂M。本题中 B = 2000 Hz，M = 16，代入公式得：\n\n- 码元速率 = 2 × 2000 = 40 000 码元/秒（即 4 k码元/秒）\n- 比特速率 = 2 × 2000 × log₂16 = 4000 × 4 = 16,000 比特/秒\n\n因此，奈奎斯特上限对应每秒 4000 码元、16000 比特。",
+      "answer_sha256": "14b8fd2f4996d0c0834370215fae65f27590d70df2758deb0c0afe7ecaddf06f",
+      "mode": "llm",
+      "elapsed_ms": 3985.192,
+      "category": "calculation",
+      "expected_abstention": false,
+      "model_attempts": [
+        {
+          "http_status": 200,
+          "request_parameters": {
+            "temperature": 0.1,
+            "max_tokens": 950,
+            "response_format": {
+              "type": "json_object"
+            }
+          },
+          "model": "qwen3-4b-instruct-2507-q4km",
+          "finish_reason": "stop",
+          "completion_received": true,
+          "declared_abstention": false
+        }
+      ],
+      "model_abstention_accepted": false
+    },
+    {
+      "id": "gen-shannon",
+      "query": "某信道带宽是 5 kHz，信噪比为 20 dB。写出线性信噪比和香农容量，结果给到约 0.1 kb/s。",
+      "source_ids": [
+        "concept-shannon",
+        "concept-capacity-limits",
+        "concept-nyquist"
+      ],
+      "answer": "线性信噪比为 $\\frac{S}{N} = 10^{20/10} = 100$。香农容量公式为 $C = B \\log_2(1 + \\frac{S}{N})$，其中带宽 $B = 5 \\text{ kHz} = 5000 \\text{ Hz}$，代入得：\n\n$$\nC = 5000 \\log_2(1 + 100) = 5000 \\log_2(101)\n$$\n\n由于 $\\log_2(101) \\approx \\log_2(128) - \\log_2(1.26) \\approx 7 - 0.34 = 6.66$，更精确计算得 $\\log_2(101) \\approx 6.658$，因此\n\n$$\nC \\approx 5000 \\times 6.658 = 33,290 \\text{ bit/s} \\approx 33.3 \\text{ kb/s}\n$$\n\n结果约为 33.3 kb/s，保留到约 0.1 kb/s 的精度。\n\n[题目ID] concept-shannon\n\n注意：本题中未提供图示，且所有计算基于香农公式与线性信噪比转换，符合香农容量定义条件。\n\n参考来源 [concept-shannon]",
+      "answer_sha256": "553570d10fa5a2731302dec7dc60edb7377840cb4ed0c7c57ed1e90c53821374",
+      "mode": "llm",
+      "elapsed_ms": 4402.629,
+      "category": "calculation",
+      "expected_abstention": false,
+      "model_attempts": [
+        {
+          "http_status": 200,
+          "request_parameters": {
+            "temperature": 0.1,
+            "max_tokens": 950,
+            "response_format": {
+              "type": "json_object"
+            }
+          },
+          "model": "qwen3-4b-instruct-2507-q4km",
+          "finish_reason": "stop",
+          "completion_received": true,
+          "declared_abstention": false
+        }
+      ],
+      "model_abstention_accepted": false
+    },
+    {
+      "id": "gen-multiplexing",
+      "query": "甲方案让几路用户同时发但频带互不相交，乙方案轮流发且使用同一频带。分别属于哪种复用？固定时隙分配下，一路不发时它的时隙一定给别人吗？",
+      "source_ids": [
+        "concept-multiplexing",
+        "concept-units"
+      ],
+      "answer": "甲方案属于频分复用（FDM），因为多路用户同时发送，且频带互不相交；乙方案属于时分复用（TDM），因为用户轮流发送，共享同一频带。\n\n在固定时隙分配下，一路不发时，它的时隙不一定给别人。根据概念资料中的分析，固定时分复用在某一路闲置时仍会保留该路时隙，不会将其分配给其他用户。因此，时隙不会被动态分配，而是固定分配给特定用户，即使该用户不发送，时隙仍存在。\n\n参考来源：[concept-multiplexing]",
+      "answer_sha256": "9afea27d45b9861c5263a3b413dfb8377b356871254015592487082ab444a33d",
+      "mode": "llm",
+      "elapsed_ms": 2086.474,
+      "category": "concept",
+      "expected_abstention": false,
+      "model_attempts": [
+        {
+          "http_status": 200,
+          "request_parameters": {
+            "temperature": 0.1,
+            "max_tokens": 950,
+            "response_format": {
+              "type": "json_object"
+            }
+          },
+          "model": "qwen3-4b-instruct-2507-q4km",
+          "finish_reason": "stop",
+          "completion_received": true,
+          "declared_abstention": false
+        }
+      ],
+      "model_abstention_accepted": false
+    },
+    {
+      "id": "gen-switch",
+      "query": "交换机刚开机时收到一帧，入端口为 5，源 MAC 为 A，目的 MAC 为未学习的 B。它先学习哪个地址？在相同 VLAN 内怎样转发这帧？",
+      "source_ids": [
+        "concept-switch-learning",
+        "concept-vlan",
+        "concept-arp-next-hop"
+      ],
+      "answer": "**要点：** 交换机按入端口学习帧的源 MAC。目的 MAC 已知时向对应端口转发，未知单播时在所属 VLAN 的其他端口泛洪。 [concept-switch-learning]\n\n**解析 [concept-switch-learning]**\n\nA 从端口 1 发往未知 B，交换机记录 A→1 并向其他端口转发。B 从端口 3 回复后，交换机学习 B→3，之后发往 B 的帧可按表单播。\n\n以上为相关考点。含不同数值或条件的题目，请按题干重新计算。",
+      "answer_sha256": "21c43dd736cfaaea9c3ec65f099c4014d65b9a26d94c588ba04b41a16e4cf6b2",
+      "mode": "extractive",
+      "elapsed_ms": 4620.066,
+      "category": "scenario",
+      "expected_abstention": false,
+      "model_attempts": [
+        {
+          "http_status": 200,
+          "request_parameters": {
+            "temperature": 0.1,
+            "max_tokens": 950,
+            "response_format": {
+              "type": "json_object"
+            }
+          },
+          "model": "qwen3-4b-instruct-2507-q4km",
+          "finish_reason": "stop",
+          "completion_received": true,
+          "declared_abstention": false
+        }
+      ],
+      "model_abstention_accepted": false
+    },
+    {
+      "id": "gen-stopwait",
+      "query": "停止等待协议中，编号 0 的帧已交给接收应用，返回的确认却丢了。发送方和接收方随后各做什么？",
+      "source_ids": [
+        "concept-stop-and-wait",
+        "concept-tcp-retransmit",
+        "concept-tcp-flow-vs-congestion"
+      ],
+      "answer": "**要点：** 发送一帧后等待确认，超时则重传。接收端按交替的序号识别重复帧，重复帧可以再次确认，但只向上层交付一次。 [concept-stop-and-wait]\n\n**解析 [concept-stop-and-wait]**\n\n若序号 0 的帧已交付而确认丢失，发送端仍会重传 0。接收端当前期待 1，识别出旧的 0 后重发确认。\n\n以上为相关考点。含不同数值或条件的题目，请按题干重新计算。",
+      "answer_sha256": "d6ea1a7b37071aa22f8d9f17807ec58653fad41db5b3c9e932bcee2372503fc2",
+      "mode": "extractive",
+      "elapsed_ms": 3690.564,
+      "category": "scenario",
+      "expected_abstention": false,
+      "model_attempts": [
+        {
+          "http_status": 200,
+          "request_parameters": {
+            "temperature": 0.1,
+            "max_tokens": 950,
+            "response_format": {
+              "type": "json_object"
+            }
+          },
+          "model": "qwen3-4b-instruct-2507-q4km",
+          "finish_reason": "stop",
+          "completion_received": true,
+          "declared_abstention": false
+        }
+      ],
+      "model_abstention_accepted": false
+    },
+    {
+      "id": "gen-gbn-sr",
+      "query": "在经典回退 N 帧与选择重传协议中，序号占 3 位，选择重传的收发窗口取相同大小。两种协议的最大发送窗口各是多少？谁能缓存乱序帧？",
+      "source_ids": [
+        "concept-gbn-sr",
+        "concept-bandwidth-delay",
+        "concept-tcp-flow"
+      ],
+      "answer": "经典回退 N 帧协议的最大发送窗口为 7，选择重传协议的最大发送窗口为 4。选择重传协议能够缓存乱序帧。\n\n步骤说明：\n- 序号占 3 位，可表示 $2^3 = 8$ 个不同的序号值，序号范围为 0 到 7。\n- 在回退 N 帧（GBN）协议中，发送窗口大小最大为 $2^3 - 1 = 7$，因为发送窗口不能导致序号回绕，否则会将旧帧误认为新帧。\n- 在选择重传（SR）协议中，为避免序号回绕导致错误确认，发送窗口大小最大为 $2^{3-1} = 4$，即发送窗口与接收窗口相等时，最大取 4，以防止重传帧与新帧混淆。\n- 选择重传协议支持缓存乱序帧，接收方可暂存乱序到达的帧，直到收到缺失帧的确认，再按序交付，因此能有效处理乱序。\n\n引用来源：[concept-gbn-sr]",
+      "answer_sha256": "1dd688cc09f7b475ff9362ac418dbaa37071e8483ee488cc1a24cf4ea5efbae7",
+      "mode": "llm",
+      "elapsed_ms": 4758.86,
+      "category": "scenario",
+      "expected_abstention": false,
+      "model_attempts": [
+        {
+          "http_status": 200,
+          "request_parameters": {
+            "temperature": 0.1,
+            "max_tokens": 950,
+            "response_format": {
+              "type": "json_object"
+            }
+          },
+          "model": "qwen3-4b-instruct-2507-q4km",
+          "finish_reason": "stop",
+          "completion_received": true,
+          "declared_abstention": false
+        }
+      ],
+      "model_abstention_accepted": false
+    },
+    {
+      "id": "gen-vlan",
+      "query": "同一台交换机上的两个终端分别接入 VLAN 11 与 VLAN 22。VLAN 11 的二层广播能直接到 VLAN 22 吗？两边需要互通时通常增设什么功能？",
+      "source_ids": [
+        "concept-vlan",
+        "concept-wifi-csma",
+        "concept-switch-learning"
+      ],
+      "answer": "不能。同一台交换机上的不同 VLAN 之间是隔离的，VLAN 11 的二层广播不会直接传播到 VLAN 22。要实现两边互通，通常需要增设三层交换功能（如三层交换机或支持 VLAN 间路由的交换机）。\n\n**步骤说明**：\n- VLAN 的设计原则是每个 VLAN 构成独立的二层广播域，因此不同 VLAN 之间默认无法直接通信（[concept-vlan]）。\n- 交换机本身只负责二层转发，不具备跨 VLAN 通信能力。\n- 要实现跨 VLAN 通信，必须通过三层设备（如三层交换机）或支持路由功能的交换机，利用三层转发功能（如 VLAN 间路由）实现数据包的转发。\n- 该功能通常被称为‘三层交换’或‘VLAN 间路由’，是解决跨 VLAN 互通的常见手段。\n\n**公式/条件**：无具体公式，但基于 VLAN 隔离原则和三层转发机制。\n\n**引用来源**：[concept-vlan]",
+      "answer_sha256": "2956fec147b1266363703eedcd48b746f47ad57d17d89440e1700ffcc9b73487",
+      "mode": "llm",
+      "elapsed_ms": 3473.042,
+      "category": "scenario",
+      "expected_abstention": false,
+      "model_attempts": [
+        {
+          "http_status": 200,
+          "request_parameters": {
+            "temperature": 0.1,
+            "max_tokens": 950,
+            "response_format": {
+              "type": "json_object"
+            }
+          },
+          "model": "qwen3-4b-instruct-2507-q4km",
+          "finish_reason": "stop",
+          "completion_received": true,
+          "declared_abstention": false
+        }
+      ],
+      "model_abstention_accepted": false
+    },
+    {
+      "id": "gen-crc",
+      "query": "生成多项式为 5 阶的 CRC，发送端做模二除法前补几位？如果接收端余数恰好为零，能断言传输绝无差错吗？",
+      "source_ids": [
+        "concept-crc",
+        "concept-bit-stuffing",
+        "concept-stop-and-wait"
+      ],
+      "answer": "发送端在数据位后补 5 个零，与 5 阶生成多项式做模二除法。如果接收端余数恰好为零，不能断言传输绝无差错，因为 CRC 仅能检错，不能纠错，且存在漏检的可能（如某些特定错误模式下余数仍为零）。\n\n**步骤说明**：\n1. 生成多项式为 5 阶，表示其最高次项为 $x^5$，因此在发送端需在数据末尾补 5 个零，形成长度为 $n+5$ 的比特串，然后与生成多项式做模二除法，得到余数，将余数附加到数据后。\n2. 接收端收到数据后，也对整个比特串（含余数）做同样的模二除法，若余数为零，则认为无差错；但余数为零并不保证一定无差错，因为某些错误模式（如某些特定的比特翻转）不会改变余数，导致漏检。\n\n**依据来源**：[concept-crc] 中明确指出：发送端在数据位后补 r 个零，与 r 阶生成多项式做模二除法，余数附在数据后；同时指出 CRC 通常用于检错，余数为零仍存在漏检的可能。",
+      "answer_sha256": "117f9919565fe6891f7da307446d4beea836c3cbfba16224200840eaf82b8587",
+      "mode": "llm",
+      "elapsed_ms": 4366.16,
+      "category": "concept",
+      "expected_abstention": false,
+      "model_attempts": [
+        {
+          "http_status": 200,
+          "request_parameters": {
+            "temperature": 0.1,
+            "max_tokens": 950,
+            "response_format": {
+              "type": "json_object"
+            }
+          },
+          "model": "qwen3-4b-instruct-2507-q4km",
+          "finish_reason": "stop",
+          "completion_received": true,
+          "declared_abstention": false
+        }
+      ],
+      "model_abstention_accepted": false
+    },
+    {
+      "id": "gen-fragmentation",
+      "query": "一个允许分片的 IPv4 数据报首部 20 字节，载荷 1000 字节，出接口 MTU 400 字节。按每个非末片尽量大的方式分片，列出各片载荷字节数、偏移字段和 MF。",
+      "source_ids": [
+        "concept-ipv4-fragmentation",
+        "concept-ipv6",
+        "concept-icmp-traceroute"
+      ],
+      "answer": "**要点：** IPv4 片偏移记录该片载荷在原载荷中的位置，单位为 8 字节。除最后一片以外，片载荷需按 8 字节对齐，且 MF=1。 [concept-ipv4-fragmentation]\n\n**解析 [concept-ipv4-fragmentation]**\n\n首部 20 字节、原始载荷 2,000 字节、MTU=600 字节时，前三片可各载 576 字节，最后一片 272 字节。偏移为 0、72、144、216，MF 为 1、1、1、0。\n\n以上为相关考点。含不同数值或条件的题目，请按题干重新计算。",
+      "answer_sha256": "2f8d3bf7fbe34ec7fa70dffeaf83a43d4f21282a816296076102186cedfe6813",
+      "mode": "extractive",
+      "elapsed_ms": 12366.56,
+      "category": "calculation",
+      "expected_abstention": false,
+      "model_attempts": [
+        {
+          "http_status": 200,
+          "request_parameters": {
+            "temperature": 0.1,
+            "max_tokens": 950,
+            "response_format": {
+              "type": "json_object"
+            }
+          },
+          "model": "qwen3-4b-instruct-2507-q4km",
+          "finish_reason": "length",
+          "completion_received": true
+        }
+      ],
+      "model_abstention_accepted": false
+    },
+    {
+      "id": "gen-longest-prefix",
+      "query": "路由表有 10.10.0.0/16→甲、10.10.4.0/24→乙、10.10.4.128/25→丙和默认→丁。10.10.4.170 发给谁，按什么规则？",
+      "source_ids": [
+        "concept-longest-prefix",
+        "concept-arp-next-hop",
+        "concept-route-aggregation"
+      ],
+      "answer": "10.10.4.170 匹配路由表中的 10.10.4.128/25→丙，因为该前缀长度最长且匹配目的地址。根据最长前缀匹配原则，当多个路由项匹配时，选择前缀长度最长的路由项。默认路由 /0 仅在无更具体匹配时使用。此处 10.10.4.170 属于 10.10.4.128/25 的范围（10.10.4.128 到 10.10.4.191），因此选择丙作为下一跳。\n\n步骤：\n1. 确定目的地址 10.10.4.170 所属的子网范围。\n2. 检查路由表中所有匹配项：\n   - 10.10.0.0/16：覆盖范围为 10.10.0.0 到 10.10.255.255，包含 10.10.4.170，匹配。\n   - 10.10.4.0/24：覆盖 10.10.4.0 到 10.10.4.255，包含 10.10.4.170，匹配。\n   - 10.10.4.128/25：覆盖 10.10.4.128 到 10.10.4.191，包含 10.10.4.170，匹配。\n   - 默认路由 /0：无具体匹配时使用，但此处有更具体匹配。\n3. 比较前缀长度：/16（前缀长度 16）、/24（前缀长度 24）、/25（前缀长度 25）。前缀长度越长，匹配越具体。\n4. 选择前缀长度最长的匹配项：10.10.4.128/25。\n\n因此，10.10.4.170 发送给丙，依据最长前缀匹配规则。\n\n[题目ID] concept-longest-prefix\n\n参考来源 [concept-longest-prefix]",
+      "answer_sha256": "24c31881a06ef44e5fcfc97d4167bfca0a3930f2db4299d54d47c314bacbe0c0",
+      "mode": "llm",
+      "elapsed_ms": 9697.357,
+      "category": "calculation",
+      "expected_abstention": false,
+      "model_attempts": [
+        {
+          "http_status": 200,
+          "request_parameters": {
+            "temperature": 0.1,
+            "max_tokens": 950,
+            "response_format": {
+              "type": "json_object"
+            }
+          },
+          "model": "qwen3-4b-instruct-2507-q4km",
+          "finish_reason": "stop",
+          "completion_received": true,
+          "declared_abstention": false
+        }
+      ],
+      "model_abstention_accepted": false
+    },
+    {
+      "id": "gen-arp",
+      "query": "主机向其他子网的服务器发 IPv4 包，路由选中了本地网关。首个以太网帧用 ARP 查谁的 MAC？该帧内 IP 数据报的目的地址是谁？",
+      "source_ids": [
+        "concept-arp-next-hop",
+        "concept-dns-records",
+        "concept-frame-format"
+      ],
+      "answer": "主机向其他子网的服务器发 IPv4 包时，首个以太网帧用 ARP 查本地网关的 MAC。该帧内 IP 数据报的目的地址是服务器的 IP 地址。\n\n步骤说明：\n- 根据路由表，主机确定下一跳是本地网关（因为目标在外部子网）。\n- ARP 请求的目标是网关的 MAC 地址，以获取下一跳的物理地址（[concept-arp-next-hop]）。\n- IP 数据报的原始目的地址始终是目标服务器的 IP 地址，不会改变（[concept-arp-next-hop]）。\n- 以太网帧的目的 MAC 地址是网关的 MAC，而 IP 数据报的目的 IP 地址是服务器的 IP 地址。\n\n注意：ARP 请求查的是网关的 MAC，而非目标服务器的 MAC，因为服务器在外部子网，不在本地链路。\n\n引用来源：[concept-arp-next-hop]",
+      "answer_sha256": "11c45a37d9e044cb2066c0913e39b0d7d07f4bd67c6103228c775b690978e53a",
+      "mode": "llm",
+      "elapsed_ms": 3750.949,
+      "category": "scenario",
+      "expected_abstention": false,
+      "model_attempts": [
+        {
+          "http_status": 200,
+          "request_parameters": {
+            "temperature": 0.1,
+            "max_tokens": 950,
+            "response_format": {
+              "type": "json_object"
+            }
+          },
+          "model": "qwen3-4b-instruct-2507-q4km",
+          "finish_reason": "stop",
+          "completion_received": true,
+          "declared_abstention": false
+        }
+      ],
+      "model_abstention_accepted": false
+    },
+    {
+      "id": "gen-ipv6",
+      "query": "一个 IPv6 包比路由器出接口的链路 MTU 大。中间设备会像 IPv4 那样直接分片吗？通常会给源端什么反馈？",
+      "source_ids": [
+        "concept-ipv6",
+        "concept-ipv4-fragmentation",
+        "concept-route-aggregation"
+      ],
+      "answer": "不会。IPv6 路由器不会对超出链路 MTU 的包进行分片。当包大小超过出接口的链路 MTU 时，路由器会丢弃该包，并向源端发送 ICMPv6 Packet Too Big 消息，提示源端调整包大小或使用分片扩展头。这种机制避免了在中间设备上执行分片，从而提升网络效率和安全性。\n\n该结论基于 [concept-ipv6] 中明确指出：'IPv6 路由器不执行分片。包超过出接口 MTU 时，路由器通常丢弃该包并返回 ICMPv6 Packet Too Big，由发送端调整包大小或使用分片扩展头。'",
+      "answer_sha256": "bfa1da82738137d2fab45d6240c121480d5b3b5a659714ee0a186e44adf8f04c",
+      "mode": "llm",
+      "elapsed_ms": 3058.644,
+      "category": "scenario",
+      "expected_abstention": false,
+      "model_attempts": [
+        {
+          "http_status": 200,
+          "request_parameters": {
+            "temperature": 0.1,
+            "max_tokens": 950,
+            "response_format": {
+              "type": "json_object"
+            }
+          },
+          "model": "qwen3-4b-instruct-2507-q4km",
+          "finish_reason": "stop",
+          "completion_received": true,
+          "declared_abstention": false
+        }
+      ],
+      "model_abstention_accepted": false
+    },
+    {
+      "id": "gen-napt",
+      "query": "两台内网主机都使用源端口 42000，经同一个公网地址访问同一台服务器。NAPT 可以怎样区分它们的回包？",
+      "source_ids": [
+        "concept-nat-port",
+        "concept-ports-sockets",
+        "concept-arp-next-hop"
+      ],
+      "answer": "NAPT 可以通过为每个内网主机的连接分配不同的公网端口来区分它们的回包。由于两台内网主机使用相同的源端口 42000，边界设备会基于传输层四元组（源 IP、源端口、目的 IP、目的端口）建立会话映射，将不同的会话映射到不同的公网端口，从而确保回包能够被正确地转发到对应的内网主机。\n\n具体来说，NAPT 使用源端口和目的端口的组合作为会话标识，当内网主机发起连接时，NAPT 会为每个连接分配一个唯一的公网端口，例如将源端口 42000 的连接映射到公网端口 50000 和 50001。当服务器响应数据包时，NAPT 会根据目标地址和目标端口查找对应的会话映射表，将回包转发到正确的内网主机。这种机制依赖于传输层四元组的唯一性，确保不同会话的正确区分。\n\n[concept-nat-port]",
+      "answer_sha256": "914d309e99d5a5d8b55b447f8ebcfc48156f03eb5ea38e93e499d8d0957e352a",
+      "mode": "llm",
+      "elapsed_ms": 3623.006,
+      "category": "scenario",
+      "expected_abstention": false,
+      "model_attempts": [
+        {
+          "http_status": 200,
+          "request_parameters": {
+            "temperature": 0.1,
+            "max_tokens": 950,
+            "response_format": {
+              "type": "json_object"
+            }
+          },
+          "model": "qwen3-4b-instruct-2507-q4km",
+          "finish_reason": "stop",
+          "completion_received": true,
+          "declared_abstention": false
+        }
+      ],
+      "model_abstention_accepted": false
+    },
+    {
+      "id": "gen-handshake",
+      "query": "普通 TCP 三次握手不携带应用数据。客户端初始序号 310，服务端初始序号 520。给出服务端第二步和客户端第三步的 seq 与 ack，解释为什么需要加 1。",
+      "source_ids": [
+        "concept-tcp-handshake",
+        "concept-udp",
+        "concept-tcp-stream"
+      ],
+      "answer": "服务端第二步发送的 SYN+ACK 中，seq 为 520，ack 为 311；客户端第三步发送的 ACK 中，seq 为 311，ack 为 521。需要加 1 是因为 TCP 中序号是按字节递增的，每个数据段的序号表示下一个字节的序号，而 SYN 数据段本身也占用一个序号。在三次握手中，SYN 包本身携带一个序号，且该序号被用于确认对方的初始序号。例如，客户端发送 SYN（seq=310）后，服务端收到后，需确认客户端的初始序号为 310，因此其 ACK 应为 310+1=311。同理，客户端在第三步 ACK 中，需确认服务端的初始序号为 520，因此其 ack 为 520+1=5-21。根据 [concept-tcp-handshake]，服务端的 SYN+ACK 应设置为 seq=y（即 520），ack=x+1（即 311）；客户端的 ACK 应设置为 seq=x+1（即 311），ack=y+1（即 521）。加 1 是为了表示对对方初始序号的确认，符合 TCP 协议中序号递增和确认机制的定义。",
+      "answer_sha256": "a46b5629548846348644f997b88ad02ded413768117d7d8931ab6809126932d1",
+      "mode": "llm",
+      "elapsed_ms": 4872.295,
+      "category": "calculation",
+      "expected_abstention": false,
+      "model_attempts": [
+        {
+          "http_status": 200,
+          "request_parameters": {
+            "temperature": 0.1,
+            "max_tokens": 950,
+            "response_format": {
+              "type": "json_object"
+            }
+          },
+          "model": "qwen3-4b-instruct-2507-q4km",
+          "finish_reason": "stop",
+          "completion_received": true,
+          "declared_abstention": false
+        }
+      ],
+      "model_abstention_accepted": false
+    },
+    {
+      "id": "gen-time-wait",
+      "query": "普通 TCP 主动关闭时，发出最后确认的一端为什么要停在 TIME_WAIT？解释它与重传 FIN 及旧报文的关系。",
+      "source_ids": [
+        "concept-tcp-close",
+        "concept-stop-and-wait",
+        "concept-tcp-retransmit"
+      ],
+      "answer": "在普通 TCP 主动关闭流程中，发出最后确认（ACK）的一端会进入 TIME_WAIT 状态，其主要目的是确保网络中可能存在的旧报文能够完全消失，从而避免这些旧报文被错误地当作新连接的报文处理。具体来说，当主动端发送 FIN 并收到对方的 ACK 后，它会发送一个最后的 ACK 确认对方的关闭请求，此时该端进入 TIME_WAIT 状态。\n\nTIME_WAIT 的存在与重传机制密切相关：首先，TCP 的 FIN 报文可能在网络中延迟，接收方可能在一段时间后才收到该 FIN，从而触发重传。如果主动端在发送最后 ACK 后立即关闭，而对方尚未收到该 ACK，那么对方可能会重传 FIN，此时主动端必须等待一段时间，以确保所有可能延迟的旧报文（如旧的 FIN 或 ACK）都已过期。这防止了旧的 FIN 报文被误认为是新连接的关闭请求，从而避免了连接状态的混乱。\n\n此外，TIME_WAIT 状态还允许主动端在一段时间后重新发送 ACK，以确认对方的 FIN，从而确保关闭流程的完整性。这种机制与 TCP 的重传机制相辅相成：如果对方的 FIN 未被及时确认，它可能需要重传，而主动端在 TIME_WAIT 状态下仍能响应，从而保证连接关闭的可靠性。\n\n该解释直接来源于 [concept-tcp-close] 中的分析：'在常见主动关闭流程中，发送最后一个 ACK 的一方进入 TIME_WAIT，常用解释是等待可能延迟的旧报文失效，并能重新确认对方重传的 FIN。对方的 ACK 和 FIN 在条件满足时可合并。'",
+      "answer_sha256": "bc904ee3312207bd170b7c43bd218a9c4562f71b95d2b3acd0ecbe68a98c30e2",
+      "mode": "llm",
+      "elapsed_ms": 4985.082,
+      "category": "concept",
+      "expected_abstention": false,
+      "model_attempts": [
+        {
+          "http_status": 200,
+          "request_parameters": {
+            "temperature": 0.1,
+            "max_tokens": 950,
+            "response_format": {
+              "type": "json_object"
+            }
+          },
+          "model": "qwen3-4b-instruct-2507-q4km",
+          "finish_reason": "stop",
+          "completion_received": true,
+          "declared_abstention": false
+        }
+      ],
+      "model_abstention_accepted": false
+    },
+    {
+      "id": "gen-congestion",
+      "query": "按教材经典模型，每个 RTT 都能收到足够确认，拥塞窗口起始 1 MSS，慢开始阈值 16 MSS。达到阈值前窗口大致怎样走？之后按什么速度增长？",
+      "source_ids": [
+        "concept-tcp-congestion",
+        "concept-tcp-flow-vs-congestion",
+        "concept-tcp-retransmit"
+      ],
+      "answer": "在教材经典模型中，拥塞窗口在达到慢开始阈值前，每收到一个确认（RTT）就增加一个MSS，整轮RTT内近似翻倍增长，即呈指数增长。当拥塞窗口达到慢开始阈值（16 MSS）后，进入拥塞避免阶段，拥塞窗口每经过一个RTT，增加一个MSS，增长速度由指数增长转为线性增长。\n\n该结论基于 [concept-tcp-congestion] 中的描述：'慢开始每收到确认便增加窗口，整轮近似翻倍。进入拥塞避免后，整轮近似增加一个MSS。' 该模型假设初始拥塞窗口为1 MSS，慢开始阈值为16 MSS，符合题目设定。",
+      "answer_sha256": "a5e26dbd4532ba93b909b1b33724eaa8e93ce8f8202002fcd1571e379a37ae3a",
+      "mode": "llm",
+      "elapsed_ms": 2961.527,
+      "category": "scenario",
+      "expected_abstention": false,
+      "model_attempts": [
+        {
+          "http_status": 200,
+          "request_parameters": {
+            "temperature": 0.1,
+            "max_tokens": 950,
+            "response_format": {
+              "type": "json_object"
+            }
+          },
+          "model": "qwen3-4b-instruct-2507-q4km",
+          "finish_reason": "stop",
+          "completion_received": true,
+          "declared_abstention": false
+        }
+      ],
+      "model_abstention_accepted": false
+    },
+    {
+      "id": "gen-flow-v-congestion",
+      "query": "TCP 接收应用长期读得慢，和网络路径上的路由器持续拥塞，分别优先由哪个控制机制处理？发送端受哪两个窗口约束？",
+      "source_ids": [
+        "concept-tcp-flow-vs-congestion",
+        "concept-tcp-flow",
+        "concept-tcp-retransmit"
+      ],
+      "answer": "TCP 接收应用长期读得慢，由流量控制（flow control）机制处理；网络路径上的路由器持续拥塞，由拥塞控制（congestion control）机制处理。发送端受两个窗口约束：接收窗口（rwnd）和拥塞窗口（cwnd），实际发送速率受限于两者中的最小值。\n\n- 流量控制通过接收方通告的接收窗口（rwnd）限制发送方发送数据量，防止接收方缓冲区溢出。\n- 拥塞控制通过拥塞窗口（cwnd）限制发送方发送数据量，以避免网络路径过载。\n- 发送端的发送上限为 min(rwnd, cwnd)，这是由 [concept-tcp-flow-vs-congestion] 和 [concept-tcp-flow] 支持的。\n\n注意：流量控制针对接收端处理能力，而拥塞控制针对网络路径的负载情况，两者分别对应不同的问题场景。",
+      "answer_sha256": "c137f9d8e8d067fb4ca42b5855fe9f139f3e7bfb111ba33fa4f4f33ad3cad95a",
+      "mode": "llm",
+      "elapsed_ms": 3532.878,
+      "category": "concept",
+      "expected_abstention": false,
+      "model_attempts": [
+        {
+          "http_status": 200,
+          "request_parameters": {
+            "temperature": 0.1,
+            "max_tokens": 950,
+            "response_format": {
+              "type": "json_object"
+            }
+          },
+          "model": "qwen3-4b-instruct-2507-q4km",
+          "finish_reason": "stop",
+          "completion_received": true,
+          "declared_abstention": false
+        }
+      ],
+      "model_abstention_accepted": false
+    },
+    {
+      "id": "gen-byte-stream",
+      "query": "客户端在同一条 TCP 连接连续写入两条应用消息，接收端一次 read 却拿到了第一条的后半段和第二条。这个现象能发生吗？应用怎样恢复消息边界？",
+      "source_ids": [
+        "concept-tcp-stream",
+        "concept-encapsulation",
+        "concept-bit-stuffing"
+      ],
+      "answer": "能发生。TCP 提供的是字节流服务，不保留应用层消息的边界，因此接收端一次 read 操作可能读取到第一条消息的后半段和第二条消息的前半段，形成粘连或拆分。应用层需通过预定义的消息格式来恢复消息边界，例如使用固定长度、消息分隔符或长度前缀（如先读取 4 字节长度字段，再按该长度读取数据）来识别和解析消息边界。[concept-tcp-stream]\n\n**必要步骤与条件**：\n- TCP 传输是无消息边界感知的字节流，每次写入的数据被合并为连续字节流，接收端无法区分原始消息的边界。\n- 应用层需在发送时约定消息格式，如使用长度前缀（length prefix）或分隔符（delimiter）来定义消息边界。\n- 读取时，应用需根据已知格式解析数据，例如先读取长度字段，再按长度读取数据块，从而恢复原始消息边界。",
+      "answer_sha256": "2948561b247cdca16e637418e75a4813a7dbb21a5469cda7439920c3e2660c73",
+      "mode": "llm",
+      "elapsed_ms": 3826.832,
+      "category": "scenario",
+      "expected_abstention": false,
+      "model_attempts": [
+        {
+          "http_status": 200,
+          "request_parameters": {
+            "temperature": 0.1,
+            "max_tokens": 950,
+            "response_format": {
+              "type": "json_object"
+            }
+          },
+          "model": "qwen3-4b-instruct-2507-q4km",
+          "finish_reason": "stop",
+          "completion_received": true,
+          "declared_abstention": false
+        }
+      ],
+      "model_abstention_accepted": false
+    },
+    {
+      "id": "gen-dns",
+      "query": "浏览器请求一个域名，主机把问题交给本地递归 DNS，且所有缓存都未命中。主机等待什么结果？解析器可通过哪些层级追问？",
+      "source_ids": [
+        "concept-dns-recursion",
+        "concept-dns-records",
+        "concept-dhcp"
+      ],
+      "answer": "主机等待递归解析器返回最终的 IP 地址或错误信息。解析器在缓存未命中时，会从根服务器开始，依次向顶级域服务器和权威服务器发起查询，逐级获取域名对应的 IP 地址。这一过程遵循 DNS 递归查询机制，由解析器负责完成所有层级的查询并返回最终结果。\n\n具体步骤如下：\n1. 主机将域名请求发送给本地递归 DNS 解析器。\n2. 递归解析器若缓存未命中，则向根服务器发起查询，获取管理 .com 域的顶级域服务器地址。\n3. 接着，递归解析器向 .com 顶级域服务器查询，获取 example.com 域名的权威名称服务器地址。\n4. 最后，递或解析器向权威名称服务器查询，获取 www.example.com 对应的 A 记录（IPv4 地址）或 AAAA 记录（IPv6 地址）。\n\n该过程依赖 DNS 递归查询机制，解析器承担所有查询责任，直到获得最终答案或错误。\n\n[题目ID] concept-dns-recursion\n\n参考来源 [concept-dns-recursion]",
+      "answer_sha256": "8682fabd916a7f5091de40c36835d7b41042c9d4a4fc84d655979fe0aa5dc3de",
+      "mode": "llm",
+      "elapsed_ms": 3676.438,
+      "category": "scenario",
+      "expected_abstention": false,
+      "model_attempts": [
+        {
+          "http_status": 200,
+          "request_parameters": {
+            "temperature": 0.1,
+            "max_tokens": 950,
+            "response_format": {
+              "type": "json_object"
+            }
+          },
+          "model": "qwen3-4b-instruct-2507-q4km",
+          "finish_reason": "stop",
+          "completion_received": true,
+          "declared_abstention": false
+        }
+      ],
+      "model_abstention_accepted": false
+    },
+    {
+      "id": "gen-dhcp",
+      "query": "一个刚接入网络的 DHCP 客户端首次获取地址。按顺序写出典型的四种消息，并说明客户端用哪一种选定服务器的配置。",
+      "source_ids": [
+        "concept-dhcp",
+        "concept-http-status",
+        "concept-arp-next-hop"
+      ],
+      "answer": "一个刚接入网络的 DHCP 客户端首次获取地址时，典型的四种消息按顺序为：Discover、Offer、Request、ACK。客户端在收到服务器的 Offer 消息后，会从多个 Offer 中选择一个，并通过 Request 消息向服务器发送选择确认，从而选定服务器的配置。最终服务器通过 ACK 消息确认租约分配。\n\n步骤说明：\n1. **Discover**：客户端广播一个 Discover 消息，以发现网络中的 DHCP 服务器，此时客户端尚未获取 IP 地址，因此使用广播地址（如 255.255.25或 255.255.255.255）发送。\n2. **Offer**：DHCP 服务器收到 Discover 后，回应一个 Offer 消息，提供 IP 地址、子网掩码、默认网关、DNS 服务器和租约时间等配置信息。\n3. **Request**：客户端收到 Offer 后，会从多个 Offer 中选择一个，然后发送 Request 消息，明确表示接受某个服务器提供的配置，此时客户端已选定服务器。\n4. **ACK**：服务器收到 Request 后，发送 ACK 消息，正式确认租约分配，客户端即可使用所选配置。\n\n依据来源：[concept-dhcp]",
+      "answer_sha256": "077f7c8621f0edd2603695224125524c1a0bc64ed0762a8272847404f3b062ff",
+      "mode": "llm",
+      "elapsed_ms": 4301.43,
+      "category": "concept",
+      "expected_abstention": false,
+      "model_attempts": [
+        {
+          "http_status": 200,
+          "request_parameters": {
+            "temperature": 0.1,
+            "max_tokens": 950,
+            "response_format": {
+              "type": "json_object"
+            }
+          },
+          "model": "qwen3-4b-instruct-2507-q4km",
+          "finish_reason": "stop",
+          "completion_received": true,
+          "declared_abstention": false
+        }
+      ],
+      "model_abstention_accepted": false
+    },
+    {
+      "id": "gen-http-cache",
+      "query": "客户端已有 HTTP 资源和先前的 ETag。下一次需要重新验证时应把标签放到哪个请求头？若资源未变化，什么状态码允许它沿用本地响应体？",
+      "source_ids": [
+        "concept-http-cache",
+        "concept-http-status",
+        "concept-http-methods"
+      ],
+      "answer": "下一次需要重新验证时，客户端应将 ETag 放入 If-None-Match 请求头中。若资源未变化，服务端可回复 304 状态码，允许客户端沿用本地响应体。\n\n依据：[concept-http-cache] 中指出，客户端可保存服务端提供的 ETag，并在重新验证时通过 If-None-Match 发回。若验证条件满足，服务端可回复 304，客户端继续使用已有缓存。",
+      "answer_sha256": "addfb5261a673779787ea6d93452196e8f1c32c2e1671b6a2cba6d5205418089",
+      "mode": "llm",
+      "elapsed_ms": 2285.858,
+      "category": "scenario",
+      "expected_abstention": false,
+      "model_attempts": [
+        {
+          "http_status": 200,
+          "request_parameters": {
+            "temperature": 0.1,
+            "max_tokens": 950,
+            "response_format": {
+              "type": "json_object"
+            }
+          },
+          "model": "qwen3-4b-instruct-2507-q4km",
+          "finish_reason": "stop",
+          "completion_received": true,
+          "declared_abstention": false
+        }
+      ],
+      "model_abstention_accepted": false
+    },
+    {
+      "id": "gen-insufficient-stamp",
+      "query": "帮我算这枚 1980 年邮票现在能卖多少钱。",
+      "source_ids": [],
+      "answer": "没有找到足够的资料来回答。若在查真题，请提供年份和题号（例如 `2024_38`）；若在做计算，请补充题干、已知数值或协议名称。",
+      "answer_sha256": "614b59c68b42841ffa888cac018bbea5d50fe3fa692c9c6b73adf23dbf3eac25",
+      "mode": "insufficient",
+      "elapsed_ms": 9.106,
+      "abstention_pass": true,
+      "category": "abstention",
+      "expected_abstention": true,
+      "model_attempts": [],
+      "model_abstention_accepted": false
+    },
+    {
+      "id": "gen-insufficient-address",
+      "query": "只依据手头资料给出我现在电脑 DHCP 获得的精确 IPv4 地址。",
+      "source_ids": [
+        "concept-dns-records",
+        "concept-route-aggregation",
+        "concept-dhcp"
+      ],
+      "answer": "现有资料不足以确定答案。请补充题干、已知条件或题号。",
+      "answer_sha256": "5b7fb5b2770ac29ddb446279546adbd2de52c4011fad3eb0b2dfa543fd0ed2e7",
+      "mode": "insufficient",
+      "elapsed_ms": 1118.79,
+      "abstention_pass": true,
+      "category": "abstention",
+      "expected_abstention": true,
+      "model_attempts": [
+        {
+          "http_status": 200,
+          "request_parameters": {
+            "temperature": 0.1,
+            "max_tokens": 950,
+            "response_format": {
+              "type": "json_object"
+            }
+          },
+          "model": "qwen3-4b-instruct-2507-q4km",
+          "finish_reason": "stop",
+          "completion_received": true,
+          "declared_abstention": true
+        }
+      ],
+      "model_abstention_accepted": true
+    },
+    {
+      "id": "gen-insufficient-exam",
+      "query": "请报出 2099 年第 99 题的正确选项。",
+      "source_ids": [],
+      "answer": "没有找到足够的资料来回答。若在查真题，请提供年份和题号（例如 `2024_38`）；若在做计算，请补充题干、已知数值或协议名称。",
+      "answer_sha256": "614b59c68b42841ffa888cac018bbea5d50fe3fa692c9c6b73adf23dbf3eac25",
+      "mode": "insufficient",
+      "elapsed_ms": 0.092,
+      "abstention_pass": true,
+      "category": "abstention",
+      "expected_abstention": true,
+      "model_attempts": [],
+      "model_abstention_accepted": false
+    },
+    {
+      "id": "gen-insufficient-fiber",
+      "query": "单模光纤和多模光纤的区别我已知道。只依据现有资料给出我们教室那根光纤的实际长度，精确到厘米。",
+      "source_ids": [
+        "concept-fiber"
+      ],
+      "answer": "现有资料不足以确定答案。请补充题干、已知条件或题号。",
+      "answer_sha256": "5b7fb5b2770ac29ddb446279546adbd2de52c4011fad3eb0b2dfa543fd0ed2e7",
+      "mode": "insufficient",
+      "elapsed_ms": 358.643,
+      "abstention_pass": true,
+      "category": "abstention",
+      "expected_abstention": true,
+      "model_attempts": [
+        {
+          "http_status": 200,
+          "request_parameters": {
+            "temperature": 0.1,
+            "max_tokens": 950,
+            "response_format": {
+              "type": "json_object"
+            }
+          },
+          "model": "qwen3-4b-instruct-2507-q4km",
+          "finish_reason": "stop",
+          "completion_received": true,
+          "declared_abstention": true
+        }
+      ],
+      "model_abstention_accepted": true
+    }
+  ]
+}

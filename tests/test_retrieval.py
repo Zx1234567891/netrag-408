@@ -72,6 +72,26 @@ class RetrievalTests(unittest.TestCase):
                 self.assertEqual([item["document"]["id"] for item in result["results"]], ["2024_37"])
                 self.assertEqual(result["results"][0]["channels"], [strategy])
 
+    def test_repeated_keywords_in_a_wrong_option_do_not_outrank_relevant_question(self):
+        documents = [
+            {
+                "id": "unrelated",
+                "question": "物理层传输时钟怎样同步？",
+                "answer": "B",
+                "options": {"A": "IPv6 邻居发现 " * 16, "B": "根据码元恢复时钟"},
+            },
+            {
+                "id": "relevant",
+                "question": "IPv6 主机如何做邻居发现？",
+                "analysis": "发送邻居请求，获得邻居通告。",
+            },
+        ]
+        retriever = HybridRetriever(documents)
+        for strategy in ("bm25", "hybrid"):
+            with self.subTest(strategy=strategy):
+                top = retriever.search("IPv6 邻居发现", strategy=strategy)["results"][0]
+                self.assertEqual(top["document"]["id"], "relevant")
+
     def test_unrelated_questions_return_no_context(self):
         for query in ("", "下面如何炒番茄鸡蛋？", "冬天适合种植哪些花卉？"):
             with self.subTest(query=query):

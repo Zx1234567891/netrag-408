@@ -1,5 +1,11 @@
 # 评测结果与验收口径
 
+本轮将 BM25 改为分字段计分，在融合时考虑考点覆盖，并实测了交叉编码重排。原真题回归集的离线混合 P@3 从 32/54（59.26%）提高到 40/54（74.07%）。启用 BGE 向量、FAISS、jieba 和 BGE-reranker-base 后，命中 44/54（81.48%）。两组独立查询、模型对照和候选上限另有记录。[本轮检索实测](retrieval-holdout.md)
+
+生成评测使用本机 Qwen3-4B-Instruct-2507，逐题核对真实输出。公开组全链路准确率 64.29%，幻觉率 28.57%。本地真题复核组全链路准确率 66.67%，幻觉率 33.33%。纯模型正文、拒答、回退和时延分别统计。[本轮生成实测](generation-evaluation.md)
+
+## 基线版本 e4eeac6d
+
 公开评测包含两组原创查询及来源 ID。演示组有 29 条用例，其中 26 条有排序标注；真题组有 24 条用例，其中 18 条有排序标注。真题组需要先导入本地交付包；评测文件没有转载题干、选项和解析。按题号精确查询单独验证，不参与排序指标。
 
 ```sh
@@ -24,6 +30,6 @@ python -m netrag.evaluate eval/exam.jsonl --data-dir local_data --output eval_lo
 
 在相同的本地真题样本上，另启用 BGE 向量、FAISS 和 jieba，保留 RRF 排序、不开启交叉编码器时，混合检索得到 Precision@3 **66.67%**、上下文精确率 **94.44%**、Hit@3 **100%**，P95 为 **15.41 ms**。这次运行使用 CPU、4 个 OpenMP 线程和 10 个单路候选。
 
-生成验收需要实际使用的模型与人工审查。运行 `python -m netrag.evaluate eval/exam.jsonl --data-dir local_data --strategy hybrid --allow-llm --output eval_local/answers.json` 后，可将人工核对的 `id`、`answer_sha256`、`correct`、`hallucinated` 写入 JSONL 并用 `--judgments` 评估。若实际输出变化，评测会拒绝复用旧标注。当前没有人工审查结果，答案准确率和幻觉率留空。
+生成评测需要实际使用的模型与逐题审查。当前使用 `netrag.generation_benchmark` 记录真实推理、引用验证和回退，再按答案摘要复算评审指标。[生成评测命令和评分记录](generation-evaluation.md)
 
 本地导入的 162 道计网真题中，144 道是选择题，其中 104 道未提供独立解析；另外 18 道是综合题，交付包将解题过程放在解析字段。两道综合题的记录缺少分值。2022–2026 年有 16 道真题被标为含图，但结构化记录未保留题图链接；应用会提示缺失。对有链接的记录，读者可从来源详情打开题图。

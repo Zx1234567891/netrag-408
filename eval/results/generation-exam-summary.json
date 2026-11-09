@@ -1,0 +1,106 @@
+{
+  "model": "qwen3-4b-instruct-2507-q4km",
+  "model_request_parameters": {
+    "temperature": 0.1,
+    "max_tokens": 950,
+    "response_format": {
+      "type": "json_object"
+    }
+  },
+  "corpus_mode": "exam",
+  "strategy": "hybrid",
+  "cases_sha256": "53a50f1b1d423a5f147082b6a8643ee2b8f882952cb0bdb0567a9eb0f6eba28f",
+  "telemetry": {
+    "cases": 6,
+    "modes": {
+      "llm": 4,
+      "extractive": 2
+    },
+    "model_calls": 6,
+    "cases_with_model_call": 6,
+    "accepted_model_answers": 4,
+    "accepted_model_abstentions": 0,
+    "completions_replaced_by_fallback": 2,
+    "calls_without_completion": 0,
+    "p95_ms": 8051.067,
+    "max_ms": 8051.067,
+    "within_5s": 4
+  },
+  "scores": {
+    "system_all": {
+      "answer_accuracy": {
+        "count": 4,
+        "total": 6,
+        "rate": 0.666667
+      },
+      "hallucination_rate": {
+        "count": 2,
+        "total": 6,
+        "rate": 0.333333
+      }
+    },
+    "system_answerable": {
+      "answer_accuracy": {
+        "count": 4,
+        "total": 6,
+        "rate": 0.666667
+      },
+      "hallucination_rate": {
+        "count": 2,
+        "total": 6,
+        "rate": 0.333333
+      }
+    },
+    "system_abstention": {
+      "answer_accuracy": {
+        "count": 0,
+        "total": 0,
+        "rate": null
+      },
+      "hallucination_rate": {
+        "count": 0,
+        "total": 0,
+        "rate": null
+      }
+    },
+    "model_answers": {
+      "answer_accuracy": {
+        "count": 2,
+        "total": 4,
+        "rate": 0.5
+      },
+      "hallucination_rate": {
+        "count": 2,
+        "total": 4,
+        "rate": 0.5
+      }
+    },
+    "model_accepted": {
+      "answer_accuracy": {
+        "count": 2,
+        "total": 4,
+        "rate": 0.5
+      },
+      "hallucination_rate": {
+        "count": 2,
+        "total": 4,
+        "rate": 0.5
+      }
+    }
+  },
+  "review_method": "Codex fact-by-fact adjudication against frozen key facts and retrieved evidence",
+  "rejected_draft_audit": [
+    {
+      "id": "gen-exam-udp-checksum",
+      "material_fact_fault": true,
+      "invalid_source_id": true,
+      "reason": "结构引用 ID 损坏，并误称最终表示需用补码。"
+    },
+    {
+      "id": "gen-exam-ospf",
+      "material_fact_fault": false,
+      "invalid_source_id": true,
+      "reason": "正文有正确的实质结论，结构引用 ID 不存在。"
+    }
+  ]
+}

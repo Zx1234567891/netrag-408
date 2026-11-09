@@ -1,0 +1,113 @@
+{
+  "model": "qwen3-4b-instruct-2507-q4km",
+  "model_request_parameters": {
+    "temperature": 0.1,
+    "max_tokens": 950,
+    "response_format": {
+      "type": "json_object"
+    }
+  },
+  "corpus_mode": "demo",
+  "strategy": "hybrid",
+  "cases_sha256": "f1ca8b7e7fb970aee09479688c0baedef29badeb6dc9f5bce00d8f4007ceeaea",
+  "telemetry": {
+    "cases": 28,
+    "modes": {
+      "llm": 21,
+      "extractive": 3,
+      "insufficient": 4
+    },
+    "model_calls": 26,
+    "cases_with_model_call": 26,
+    "accepted_model_answers": 21,
+    "accepted_model_abstentions": 2,
+    "completions_replaced_by_fallback": 3,
+    "calls_without_completion": 0,
+    "p95_ms": 12366.56,
+    "max_ms": 15769.413,
+    "within_5s": 24
+  },
+  "scores": {
+    "system_all": {
+      "answer_accuracy": {
+        "count": 18,
+        "total": 28,
+        "rate": 0.642857
+      },
+      "hallucination_rate": {
+        "count": 8,
+        "total": 28,
+        "rate": 0.285714
+      }
+    },
+    "system_answerable": {
+      "answer_accuracy": {
+        "count": 14,
+        "total": 24,
+        "rate": 0.583333
+      },
+      "hallucination_rate": {
+        "count": 8,
+        "total": 24,
+        "rate": 0.333333
+      }
+    },
+    "system_abstention": {
+      "answer_accuracy": {
+        "count": 4,
+        "total": 4,
+        "rate": 1.0
+      },
+      "hallucination_rate": {
+        "count": 0,
+        "total": 4,
+        "rate": 0.0
+      }
+    },
+    "model_answers": {
+      "answer_accuracy": {
+        "count": 13,
+        "total": 21,
+        "rate": 0.619048
+      },
+      "hallucination_rate": {
+        "count": 8,
+        "total": 21,
+        "rate": 0.380952
+      }
+    },
+    "model_accepted": {
+      "answer_accuracy": {
+        "count": 15,
+        "total": 23,
+        "rate": 0.652174
+      },
+      "hallucination_rate": {
+        "count": 8,
+        "total": 23,
+        "rate": 0.347826
+      }
+    }
+  },
+  "review_method": "Codex fact-by-fact adjudication against frozen key facts and retrieved evidence",
+  "rejected_draft_audit": [
+    {
+      "id": "gen-switch",
+      "material_fact_fault": false,
+      "invalid_source_id": true,
+      "reason": "正文含不存在的拼写变体，且另有返回证据未列入声明。实体判断本身正确。"
+    },
+    {
+      "id": "gen-stopwait",
+      "material_fact_fault": true,
+      "invalid_source_id": false,
+      "reason": "在未给 ACK 编号约定的题面和证据下断言重发确认编号为 1，并在正文括注未声明的证据 ID。"
+    },
+    {
+      "id": "gen-fragmentation",
+      "material_fact_fault": true,
+      "invalid_source_id": false,
+      "reason": "输出截断，原稿在此之前已经多次给出与 MTU、8 字节对齐及偏移字段单位不符的数值。"
+    }
+  ]
+}

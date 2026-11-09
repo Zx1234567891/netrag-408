@@ -47,7 +47,7 @@ python3 -m venv .venv
 
 ## 启用模型和双索引
 
-默认使用轻量的 CJK BM25、TF-IDF/考点特征余弦检索和 RRF。可以安装可选依赖，使用 [BGE 中文向量模型](https://huggingface.co/BAAI/bge-small-zh-v1.5) 与 [BGE 重排模型](https://huggingface.co/BAAI/bge-reranker-base)：
+默认使用 CJK BM25F、TF-IDF 与考点特征余弦检索，再按章节和考点覆盖加权融合。BM25F 分别对题干与考点、正确答案与解析、干扰选项三组字段计分。安装可选依赖可启用语义向量和交叉编码器。[BGE 中文向量模型](https://huggingface.co/BAAI/bge-small-zh-v1.5) · [BGE 重排模型](https://huggingface.co/BAAI/bge-reranker-base)
 
 ```powershell
 .\.venv\Scripts\python.exe -m pip install -r requirements-models.txt
@@ -60,7 +60,9 @@ $env:NETRAG_USE_FAISS = "1"
 
 首次启动会下载模型并构建归一化 FAISS 内积索引；环境变量也接受本地模型目录。`NETRAG_CANDIDATE_K` 可调整候选数，默认 20；`NETRAG_BM25_WEIGHT` 和 `NETRAG_DENSE_WEIGHT` 可调整 RRF 权重，默认均为 1。启用模型时可在 `/api/health` 核实当前索引、分词和重排后端。
 
-若需生成式回答，设置 `NETRAG_LLM_BASE_URL`（例如 `http://127.0.0.1:11434/v1`）、`NETRAG_LLM_MODEL` 和服务要求的 `NETRAG_LLM_API_KEY`。系统向该地址的 `/chat/completions` 发送问题及检索证据。使用本地真题库时，应选择有权接收这些内容的服务。模型未配置、响应失败或返回无效引用时，应用使用本地证据回答；能直接求解的数值题由确定性计算器完成。
+要复现本轮首组独立集得分最高的配置，将 `NETRAG_RERANKER_MODEL` 设为 `Qwen/Qwen3-Reranker-0.6B`，并保留 BGE 向量、jieba、FAISS 和每路 20 个候选。[Qwen 重排模型](https://huggingface.co/Qwen/Qwen3-Reranker-0.6B) · [检索实测](docs/retrieval-holdout.md)
+
+若需生成式回答，设置 `NETRAG_LLM_BASE_URL`（例如 `http://127.0.0.1:11434/v1`）、`NETRAG_LLM_MODEL` 和服务要求的 `NETRAG_LLM_API_KEY`。支持 JSON 输出模式的服务可启用 `NETRAG_LLM_JSON_MODE=1`。系统向该地址的 `/chat/completions` 发送问题及检索证据。使用本地真题库时，应选择有权接收这些内容的服务。模型明确判断资料不足时，界面提示补充条件。模型未配置、响应失败或引用校验失败时，应用使用本地证据回答。数值题可由确定性计算器直接求解。
 
 ## 验证与部署
 
@@ -70,6 +72,6 @@ python -m pytest -q
 python -m netrag.evaluate eval/demo.jsonl --output eval_local/demo-result.json
 ```
 
-评测支持 BM25、向量及混合检索对照，统计 P@3、上下文精确率、命中率和延迟；可导入逐条人工评审计算答案准确率和幻觉率。见[设计与验收说明](docs/design.md)和[实测结果](docs/evaluation.md)。
+检索评测统计 P@3、上下文精确率、命中率和延迟。生成评测记录模型调用、引用校验、拒答和本地兜底，并用逐条审查计算准确率和幻觉率。[设计与验收说明](docs/design.md) · [检索实测](docs/evaluation.md) · [生成实测](docs/generation-evaluation.md)
 
 也可运行 `docker build -t netrag-408 .` 后用 `docker run --rm -p 127.0.0.1:8000:8000 netrag-408` 启动公开演示。容器的真题模式需要另行以只读卷挂载本地数据，并设置 `NETRAG_DATA_DIR`。

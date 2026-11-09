@@ -1,0 +1,6 @@
+{"id": "gen-exam-sdn", "answer_sha256": "e72569137bf400137092e9555f6af2e0c15577183f13da8d7b613946e69bcb9b", "correct": true, "hallucinated": false, "reason": "南向控制转发设备、北向面向上层应用的角色均准确。额外示例不改变角色判定。"}
+{"id": "gen-exam-subnet", "answer_sha256": "36970b0f64601b43f6e714d2ba3047b0868ef669f38da48f2f430cb1f28da64e", "correct": false, "hallucinated": true, "reason": "最终地址和范围正确，但中间步骤把 24 位串写成前 20 位，并给出了相互冲突的子网范围。"}
+{"id": "gen-exam-udp-checksum", "answer_sha256": "13e4be71b7846dd4e428f4806736923233477f136eea13b9cd6514c3e86c0079", "correct": true, "hallucinated": false, "reason": "回退内容正确地对十六位加法的进位折回再取反，结果与校验值一致。"}
+{"id": "gen-exam-pop3", "answer_sha256": "c757f653c928616d34211b5ed0cd4f9d47bfa40b9b429278df80e2e97a04bc58", "correct": true, "hallucinated": false, "reason": "区分邮件读取与发送，确认一个 TCP 会话可读取多封邮件。"}
+{"id": "gen-exam-ospf", "answer_sha256": "cc5a891a002a1a36b3d74668d8e25a36f1244f445a99b79859f5f369df1a52b2", "correct": true, "hallucinated": false, "reason": "回退答案区分 OSPF 区域、RIP 距离向量与 BGP 自治系统间路由。"}
+{"id": "gen-exam-cookie", "answer_sha256": "6019d9f302d25e4682e2df9c6b998360b7e17718875b3be49c1735ce4b1f083b", "correct": false, "hallucinated": true, "reason": "会话标识机制正确，但把题解的共享缓存限定扩展到浏览器私有缓存，给出不成立的缓存泛化。"}

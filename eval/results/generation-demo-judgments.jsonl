@@ -1,0 +1,28 @@
+{"id": "gen-layer-mapping", "answer_sha256": "e0fccb072b0337096908a937abc72fbff576e0d6114003eb63939d6c8e69df24", "correct": true, "hallucinated": false, "reason": "物理层和链路层均对应网络接口层，表示层职责归应用层。"}
+{"id": "gen-delay", "answer_sha256": "aff0327665360db0b12db43620903f3171eeabc520329d9a9604e1a9b2beb281", "correct": true, "hallucinated": false, "reason": "9600 bit 得发送时延 1.2 ms，距离除传播速度得 1.5 ms，总计 2.7 ms。"}
+{"id": "gen-bottleneck", "answer_sha256": "656e34667c226895c49b6990b8212746d65894b60c98d6185024ac5471d7719e", "correct": true, "hallucinated": false, "reason": "取最慢链路 10 Mb/s，并解释应用净吞吐量可更低。"}
+{"id": "gen-nyquist", "answer_sha256": "14b8fd2f4996d0c0834370215fae65f27590d70df2758deb0c0afe7ecaddf06f", "correct": false, "hallucinated": true, "reason": "给出正确末行，但正文又把 4000 码元/秒写为 4 kbps，并另写 40000 码元/秒，关键量自相矛盾。"}
+{"id": "gen-shannon", "answer_sha256": "553570d10fa5a2731302dec7dc60edb7377840cb4ed0c7c57ed1e90c53821374", "correct": true, "hallucinated": false, "reason": "线性信噪比 100，香农容量约 33.3 kb/s，有可核对的公式和引用。"}
+{"id": "gen-multiplexing", "answer_sha256": "9afea27d45b9861c5263a3b413dfb8377b356871254015592487082ab444a33d", "correct": true, "hallucinated": false, "reason": "两种复用判定正确，并指出固定时隙即使空闲也保留。"}
+{"id": "gen-switch", "answer_sha256": "21c43dd736cfaaea9c3ec65f099c4014d65b9a26d94c588ba04b41a16e4cf6b2", "correct": false, "hallucinated": false, "reason": "回退解释了源 MAC 学习和未知单播泛洪，给出另一题设的端口 1 示例，没有确定题设 A→端口 5。"}
+{"id": "gen-stopwait", "answer_sha256": "d6ea1a7b37071aa22f8d9f17807ec58653fad41db5b3c9e932bcee2372503fc2", "correct": true, "hallucinated": false, "reason": "回退材料恰好覆盖当前场景，明确超时重发 0、重复帧不重复交付并重发确认。"}
+{"id": "gen-gbn-sr", "answer_sha256": "1dd688cc09f7b475ff9362ac418dbaa37071e8483ee488cc1a24cf4ea5efbae7", "correct": false, "hallucinated": true, "reason": "窗口上限和缓存策略正确，但宣称接收方等待缺失帧的确认才交付。接收方应等待缺失数据帧本身。"}
+{"id": "gen-vlan", "answer_sha256": "2956fec147b1266363703eedcd48b746f47ad57d17d89440e1700ffcc9b73487", "correct": true, "hallucinated": false, "reason": "VLAN 隔离广播，配置三层转发实现互通。"}
+{"id": "gen-crc", "answer_sha256": "117f9919565fe6891f7da307446d4beea836c3cbfba16224200840eaf82b8587", "correct": true, "hallucinated": false, "reason": "补 5 个零，并指出余数为零仍有漏检可能。"}
+{"id": "gen-fragmentation", "answer_sha256": "2f8d3bf7fbe34ec7fa70dffeaf83a43d4f21282a816296076102186cedfe6813", "correct": false, "hallucinated": false, "reason": "回退只给出通用规则和不同输入的资料示例，没有计算本题各片长度、偏移和标志。"}
+{"id": "gen-longest-prefix", "answer_sha256": "24c31881a06ef44e5fcfc97d4167bfca0a3930f2db4299d54d47c314bacbe0c0", "correct": true, "hallucinated": false, "reason": "列出命中的不同前缀，选 /25 的下一跳丙。"}
+{"id": "gen-arp", "answer_sha256": "11c45a37d9e044cb2066c0913e39b0d7d07f4bd67c6103228c775b690978e53a", "correct": true, "hallucinated": false, "reason": "ARP 解析本地网关，区分帧目的 MAC 与远端服务器目的 IP。"}
+{"id": "gen-ipv6", "answer_sha256": "bfa1da82738137d2fab45d6240c121480d5b3b5a659714ee0a186e44adf8f04c", "correct": false, "hallucinated": true, "reason": "分片行为和 ICMPv6 反馈正确，但又断言这会提升网络安全性，所返回证据与题设无法支持这一因果结论。"}
+{"id": "gen-napt", "answer_sha256": "914d309e99d5a5d8b55b447f8ebcfc48156f03eb5ea38e93e499d8d0957e352a", "correct": false, "hallucinated": true, "reason": "正确提到独立公网端口，随后又把源端口与目的端口组合说成会话标识。题设两个会话的这两项可相同，缺少地址维度。"}
+{"id": "gen-handshake", "answer_sha256": "a46b5629548846348644f997b88ad02ded413768117d7d8931ab6809126932d1", "correct": false, "hallucinated": true, "reason": "主要字段数值正确，但把数据段序号解释成下一个字节的序号，混淆了 SEQ 和 ACK 的意义。"}
+{"id": "gen-time-wait", "answer_sha256": "bc904ee3312207bd170b7c43bd218a9c4562f71b95d2b3acd0ecbe68a98c30e2", "correct": false, "hallucinated": true, "reason": "提及两个用途，但在过程描述中省去被动方的 FIN，并错误地把接收延迟的 FIN 说成会触发重传。"}
+{"id": "gen-congestion", "answer_sha256": "a5e26dbd4532ba93b909b1b33724eaa8e93ce8f8202002fcd1571e379a37ae3a", "correct": false, "hallucinated": true, "reason": "将一次 ACK 与一个 RTT 混为同一事件，也没有列出请求的窗口增长序列。"}
+{"id": "gen-flow-v-congestion", "answer_sha256": "c137f9d8e8d067fb4ca42b5855fe9f139f3e7bfb111ba33fa4f4f33ad3cad95a", "correct": true, "hallucinated": false, "reason": "给出接收侧与路径拥塞的不同机制，并解释两个窗口共同限制可发送的数据量。"}
+{"id": "gen-byte-stream", "answer_sha256": "2948561b247cdca16e637418e75a4813a7dbb21a5469cda7439920c3e2660c73", "correct": true, "hallucinated": false, "reason": "字节流无应用消息边界，提供可行的长度前缀等应用层分帧方式。"}
+{"id": "gen-dns", "answer_sha256": "8682fabd916a7f5091de40c36835d7b41042c9d4a4fc84d655979fe0aa5dc3de", "correct": true, "hallucinated": false, "reason": "主机获得结果或错误，解析器按根、顶级域、权威服务器的线索查询。"}
+{"id": "gen-dhcp", "answer_sha256": "077f7c8621f0edd2603695224125524c1a0bc64ed0762a8272847404f3b062ff", "correct": false, "hallucinated": true, "reason": "DORA 和 Request 选择正确，但给出了无效 IPv4 字符串 255.255.25 作为广播地址示例。"}
+{"id": "gen-http-cache", "answer_sha256": "addfb5261a673779787ea6d93452196e8f1c32c2e1671b6a2cba6d5205418089", "correct": true, "hallucinated": false, "reason": "正确给出 If-None-Match、304 和复用缓存响应体。"}
+{"id": "gen-insufficient-stamp", "answer_sha256": "614b59c68b42841ffa888cac018bbea5d50fe3fa692c9c6b73adf23dbf3eac25", "correct": true, "hallucinated": false, "reason": "系统说明资料不足，没有编造价格。"}
+{"id": "gen-insufficient-address", "answer_sha256": "5b7fb5b2770ac29ddb446279546adbd2de52c4011fad3eb0b2dfa543fd0ed2e7", "correct": true, "hallucinated": false, "reason": "模型主动拒答，没有给出不可观测的当前地址。"}
+{"id": "gen-insufficient-exam", "answer_sha256": "614b59c68b42841ffa888cac018bbea5d50fe3fa692c9c6b73adf23dbf3eac25", "correct": true, "hallucinated": false, "reason": "系统说明资料不足，没有编造不存在的试题或选项。"}
+{"id": "gen-insufficient-fiber", "answer_sha256": "5b7fb5b2770ac29ddb446279546adbd2de52c4011fad3eb0b2dfa543fd0ed2e7", "correct": true, "hallucinated": false, "reason": "模型主动拒答，没有编造未提供测量数据的长度。"}

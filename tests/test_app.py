@@ -98,25 +98,30 @@ def test_calculation_rejects_ambiguous_or_invalid_parameters(query):
     assert calculate(query) is None
 
 
-@pytest.mark.parametrize(("answer", "refs", "expected"), [
-    ("SYN 同步初始序号。[tcp-handshake]", ["tcp-handshake"], "llm"),
-    ("SYN 同步初始序号。[made-up]", ["made-up"], "extractive"),
-    ("[tcp-handshake] [made-up]", ["tcp-handshake"], "extractive"),
+@pytest.mark.parametrize(("answer", "refs", "insufficient", "expected"), [
+    ("SYN 同步初始序号。[tcp-handshake]", ["tcp-handshake"], False, "llm"),
+    ("SYN 同步初始序号。", ["tcp-handshake"], False, "llm"),
+    ("SYN 同步初始序号。[made-up]", ["made-up"], False, "extractive"),
+    ("[tcp-handshake] [made-up]", ["tcp-handshake"], False, "extractive"),
+    ("资料不足", [], True, "insufficient"),
+    ("自行猜测结论", [], True, "extractive"),
 ])
-def test_model_protocol_and_unknown_citations(answer, refs, expected):
+def test_model_protocol_and_unknown_citations(answer, refs, insufficient, expected):
     def provider(request):
         assert request.url.path == "/v1/chat/completions"
         body = json.loads(request.content)
         assert body["model"] == "test-model"
         assert "tcp-handshake" in body["messages"][1]["content"]
         return httpx.Response(200, json={"choices": [{"message": {
-            "content": json.dumps({"answer": answer, "citations": refs}, ensure_ascii=False)}}]})
+            "content": json.dumps({"answer": answer, "citations": refs, "insufficient": insufficient}, ensure_ascii=False)}}]})
 
     doc = {"id": "tcp-handshake", "kind": "concept", "question": "TCP 握手？", "options": {},
            "answer": "同步序号。", "analysis": "SYN，SYN-ACK，ACK。"}
     with httpx.Client(transport=httpx.MockTransport(provider)) as http:
-        _, mode = AnswerGenerator(ModelConfig("http://test.local/v1", "test-model"), http).answer("TCP 三次握手", [doc])
+        text, mode = AnswerGenerator(ModelConfig("http://test.local/v1", "test-model"), http).answer("TCP 三次握手", [doc])
     assert mode == expected
+    if mode == "llm":
+        assert "[tcp-handshake]" in text
 
 
 def test_precision_denominator_and_context_order():
