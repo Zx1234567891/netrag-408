@@ -1,0 +1,24 @@
+{"id":"rank-delay","query":"多段链路传文件，若路由器要等整块收完才开始向下一段发，应把哪几项等待时间加起来？","relevant_ids":["2023_33","concept-store-forward","concept-delay-components"]}
+{"id":"rank-throughput","query":"计算考研题里端到端路径的最大吞吐量时，如何从各边给出的带宽找瓶颈？","relevant_ids":["2024_33","2025_33","concept-throughput"]}
+{"id":"rank-noiseless","query":"没有噪声的信道用多电平或多相位携带信息，频宽怎样约束每秒的比特量？","relevant_ids":["2009_34","2022_34","2023_34","concept-nyquist","concept-baud"]}
+{"id":"rank-noisy","query":"题中给的是噪声功率比，怎样换成理论容量再计算发送一个分组的时间？","relevant_ids":["2016_34","2026_34","concept-shannon","concept-capacity-limits"]}
+{"id":"rank-ethernet","query":"共享电缆或集线器构成的以太网，怎么从两端的传播时间算 CSMA/CD 最短帧？","relevant_ids":["2009_37","2010_47","2016_36","concept-ethernet-collision"]}
+{"id":"rank-wifi","query":"在 802.11 中先等帧间隔再预约信道，算占用时间时 RTS 和 CTS 应不应该计入？","relevant_ids":["2018_35","2024_36","2026_35","concept-wifi-csma"]}
+{"id":"rank-vlan","query":"以太网交换机分配了不同端口 VLAN，未知目的地址会扩散到其他 VLAN 吗？","relevant_ids":["2024_35","2026_36","concept-vlan","concept-switch-learning"]}
+{"id":"rank-code-distance","query":"想找一道通过编码集合中最小码距判断能检测或纠正几位错误的题。","relevant_ids":["2025_34"]}
+{"id":"rank-subnet-mask","query":"知道主机的点分十进制 IP 和掩码，要怎样找它所在的网段起始地址？","relevant_ids":["2022_35","2012_39","concept-subnet-cidr"]}
+{"id":"rank-route-aggregate","query":"路由表中多个相邻的网络走同一接口，能不能把表项合成一个更短的网络前缀？","relevant_ids":["2018_38","2026_37","concept-route-aggregation"]}
+{"id":"rank-fragment-offset","query":"IPv4 包比出链路 MTU 大，第二片的偏移量用前一片的数据字节怎样计算？","relevant_ids":["2021_36","2018_47","concept-ipv4-fragmentation"]}
+{"id":"rank-ospf","query":"找一下自治系统内部可分区域的链路状态路由协议，顺带对照距离向量协议。","relevant_ids":["2026_38","2024_47","concept-rip-ospf"]}
+{"id":"rank-dns","query":"本地服务器没有缓存，比较由它逐级询问和把工作交给下一台服务器的域名查询过程。","relevant_ids":["2010_40","2016_40","2020_40","concept-dns-recursion"]}
+{"id":"rank-congestion-timeout","query":"TCP 发送端遇到重传超时，拥塞窗口和慢开始阈值如何调整，后续几个 RTT 如何增长？","relevant_ids":["2009_39","2022_38","concept-tcp-congestion","concept-tcp-retransmit"]}
+{"id":"rank-tcp-window","query":"接收方每次确认时的接收缓存不同，还能送多少数据由接收窗口、拥塞窗口和未确认量怎么决定？","relevant_ids":["2014_38","2016_41","2025_38","concept-tcp-flow","concept-tcp-flow-vs-congestion"]}
+{"id":"rank-tcp-close","query":"客户端主动关闭 TCP，确认对端结束之后何时才释放，为什么要等两倍 MSL？","relevant_ids":["2021_38","2022_39","2024_38","concept-tcp-close"]}
+{"id":"rank-http","query":"页面引用同站点的若干图片，非持久 HTTP 模式里每次请求要单独建立 TCP 吗？","relevant_ids":["2024_40","2022_40","concept-http-persistence"]}
+{"id":"rank-mail","query":"想看邮件用户代理从服务器取信与向服务器发信分别用哪些协议的题。","relevant_ids":["2012_40","2013_40","2025_40","concept-email"]}
+{"id":"exact-old","query":"2009_33 怎么做？","answer_contains":["[2009_33]","题库答案"]}
+{"id":"exact-chinese","query":"讲解 2014 年第 38 题。","answer_contains":["[2014_38]","题库答案"]}
+{"id":"exact-full-width","query":"２０２２ 年 ４０８ 真题 第 ３５ 题","answer_contains":["[2022_35]","题库答案"]}
+{"id":"exact-latest","query":"请讲解 2026_39","answer_contains":["[2026_39]","题库答案"]}
+{"id":"miss-outside-network","query":"请讲解 2026 年第 10 题。","expect_insufficient":true}
+{"id":"miss-outside-topic","query":"如何判断一枚鸡蛋是否煮熟？","expect_insufficient":true}

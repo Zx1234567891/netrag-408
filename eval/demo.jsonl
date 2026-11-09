@@ -1,0 +1,29 @@
+{"id":"delay-distance","query":"保持线路速率不变，把传输介质拉长后，整帧推入线路和首比特到对端的时间分别怎么变？","relevant_ids":["concept-delay-components","concept-store-forward"]}
+{"id":"throughput-path","query":"连续发送大文件时，路径里有的链路快有的慢，最终每秒能收到多少比特受哪一段限制？","relevant_ids":["concept-throughput"]}
+{"id":"layer-pdu","query":"如果要给每一层交下去的数据起正确的名字，TCP、IP 和以太网分别该用哪个名词？","relevant_ids":["concept-units","concept-encapsulation","concept-osi-layers"]}
+{"id":"reservation","query":"数据分成小块穿过交换设备时，空闲用户会占着固定带宽吗？和专线预留有什么不同？","relevant_ids":["concept-packet-switching","concept-multiplexing"]}
+{"id":"capacity-bounds","query":"发送端可用的信号电平有限，链路又有噪声，两个算出的最大比特速率应该选较大还是较小？","relevant_ids":["concept-capacity-limits","concept-nyquist","concept-shannon"]}
+{"id":"symbol-bits","query":"有 8 种彼此可区分的状态，每发送一次状态可以带几位信息，如何从每秒状态数推出 bit/s？","relevant_ids":["concept-baud","concept-nyquist","concept-capacity-limits"]}
+{"id":"coding-clock","query":"某编码规定每个位时间的中点必须跳变，这样接收设备怎样提取时钟？","relevant_ids":["concept-manchester"]}
+{"id":"collision-cable","query":"半双工共享以太网中，如果报文还没传到最远端就发完了，为何可能漏掉碰撞？","relevant_ids":["concept-ethernet-collision","concept-hub-repeater"]}
+{"id":"l2-forward","query":"第一次收到发往陌生 MAC 的单播时，交换机会记住谁的入口端口，又向哪些口送出去？","relevant_ids":["concept-switch-learning","concept-ethernet-address","concept-vlan"]}
+{"id":"framing-bits","query":"载荷碰巧出现与帧边界相同的位序列时，可以怎样在发送端插入位并在接收端撤销？","relevant_ids":["concept-bit-stuffing"]}
+{"id":"repeat-frames","query":"滑动窗口传输里中间一帧出错，后续正确帧可以先保存等它补回来吗？","relevant_ids":["concept-gbn-sr"]}
+{"id":"wireless-hidden","query":"两个 Wi-Fi 终端彼此听不见却连接同一 AP，预先交换哪些控制帧能缓解它们同时发射？","relevant_ids":["concept-wifi-csma"]}
+{"id":"route-specific","query":"同一个目标地址既匹配默认路由，也匹配一条更长的掩码，转发时走哪条？","relevant_ids":["concept-longest-prefix","concept-route-aggregation","concept-subnet-cidr"]}
+{"id":"route-summary","query":"两段连续地址都要通向同一个下一跳，什么时候可以用一个更短的前缀表示并且不多包含地址？","relevant_ids":["concept-route-aggregation","concept-subnet-cidr"]}
+{"id":"ip-too-big","query":"路由器出接口放不下整个 IP 包时，IPv4 和 IPv6 分别是谁负责把包变小？","relevant_ids":["concept-ipv4-fragmentation","concept-ipv6"]}
+{"id":"arp-offlink","query":"跨网段给一台服务器发数据，本机在局域网上广播要找的是服务器网卡还是网关网卡？","relevant_ids":["concept-arp-next-hop","concept-encapsulation"]}
+{"id":"path-hops","query":"探测报文的跳数预算逐次增加后，可以根据什么回复推断中途经过的路由器？","relevant_ids":["concept-icmp-traceroute"]}
+{"id":"tcp-receive-limit","query":"对端应用读取太慢，缓冲区都快填满了，哪个窗口负责让发送方降速？","relevant_ids":["concept-tcp-flow","concept-tcp-flow-vs-congestion","concept-bandwidth-delay"]}
+{"id":"tcp-network-limit","query":"不是接收方太慢，而是网络中频繁丢包，TCP 会调节哪个窗口，恢复发送有哪些阶段？","relevant_ids":["concept-tcp-congestion","concept-tcp-flow-vs-congestion","concept-tcp-retransmit"]}
+{"id":"tcp-two-fin","query":"客户端发完最后一个 ACK 后为什么还暂留连接状态？另一端此时如果没收到确认会怎样？","relevant_ids":["concept-tcp-close"]}
+{"id":"dns-resolver-chain","query":"浏览器只把域名交给本地解析器，接下来是谁逐个问根、顶级域和权威服务器？","relevant_ids":["concept-dns-recursion","concept-dns-records"]}
+{"id":"http-same-content","query":"浏览器缓存了旧副本，想问服务器有没有更新，有哪些请求和响应字段可以省掉重新下载正文？","relevant_ids":["concept-http-cache"]}
+{"id":"cidr-calculation","query":"给定 198.51.100.78/27，请算网络地址、广播地址和可用主机范围。","relevant_ids":["concept-subnet-cidr"],"answer_contains":["198.51.100.64","198.51.100.95","198.51.100.65","198.51.100.94","30"]}
+{"id":"split-calculation","query":"将 203.0.113.0/24 划分为 8 个等大的子网，请给出前缀长度和首个、末个网段。","relevant_ids":["concept-subnet-cidr","concept-route-aggregation"],"answer_contains":["/27","203.0.113.0/27","203.0.113.224/27"]}
+{"id":"tcp-calculation","query":"TCP 的 rwnd 为 7000 字节，cwnd 为 4800 字节，在途数据 1350 字节，最多还能发送多少字节？","relevant_ids":["concept-tcp-flow","concept-tcp-flow-vs-congestion","concept-tcp-congestion"],"answer_contains":["min(rwnd, cwnd)","3450"]}
+{"id":"ack-calculation","query":"TCP 中 seq 为 1024，载荷为 260 字节，按序收到时下一个确认号是什么？","relevant_ids":["concept-tcp-ack","concept-tcp-retransmit"],"answer_contains":["1284"]}
+{"id":"unrelated-food","query":"家庭烤箱烤芝士蛋糕要用多少度？","expect_insufficient":true}
+{"id":"unrelated-weather","query":"今天上海天气怎么样？","expect_insufficient":true}
+{"id":"missing-exam","query":"请讲解 2025 年 408 第 40 题。","expect_insufficient":true}
